@@ -6,6 +6,7 @@
     }" >
     <div
       v-if="props.overlay"
+      :class="{ round: props.round }"
       :style="{ background: props.overlay }" />
     <img
       :class="{ round: props.round }"
@@ -31,7 +32,7 @@
     height: auto;
   }
 
-  img.round {
+  .round {
     border-radius: 50%;
   }
 </style>
