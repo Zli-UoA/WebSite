@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/vue';
 
 import BasicImage from '../components/Atom/BasicImage.vue';
 import Logo from '../components/Atom/Logo.vue';
+import TitleTag from '../components/Atom/TitleTag.vue';
 
 storiesOf('Atom', module)
   .addDecorator(withKnobs)
@@ -35,4 +36,11 @@ storiesOf('Atom', module)
       components: { Logo },
       template: '<Logo :size="size" :color="color" />',
     };
-  });
+  }).add('TitleTag', () => ({
+    components: { TitleTag },
+    template: `<div>
+      <TitleTag>Title</TitleTag>
+      <TitleTag inverse="true">Title</TitleTag>
+      </div>
+    `,
+  }));
