@@ -13,7 +13,6 @@
   "dependencies": {
     "@storybook/addon-knobs": "^5.2.4",
     "@storybook/vue": "^5.2.4",
-    "@storybook/addon-knobs": "^5.2.4",
     "core-js": "^3.1.2",
     "vue": "^2.6.10",
     "vue-router": "^3.0.6",
