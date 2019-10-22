@@ -56,7 +56,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
   .wrapper {
     position: relative;
     width: 320px;
@@ -69,6 +69,8 @@ export default {
     justify-content: center;
     align-items: center;
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     color: white;
