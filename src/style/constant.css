@@ -11,5 +11,14 @@
     --color-black-grey: rgba(0, 0, 0, 0.7);
     --color-black-50: rgba(0, 0, 0, 0.5);
     --color-black-30: rgba(0, 0, 0, 0.3);
+
+    /*    font size constant    */
+    --font-size-large: 40px;
+    --font-size-medium: 32px;
+    --font-size-small: 20px;
+    --font-size-x-small: 16px;
+
+    /*    font family constant   */ 
+
 }
 
