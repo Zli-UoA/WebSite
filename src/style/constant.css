@@ -4,7 +4,7 @@
     --color-lite-primary: #FFDA6B;
     --color-primary: #FFC107;
     --color-dark-primary: #C1940D;
-    --color-seconda: #0288D1;
+    --color-secondary: #0288D1;
     --color-warning: #FFEB3B;
     --color-danger: #FF5722;
     --color-black: #000000;
@@ -18,7 +18,7 @@
     --font-size-small: 20px;
     --font-size-x-small: 16px;
 
-    /*    font family constant   */ 
+    /*    font family constant   */
 
 }
 
