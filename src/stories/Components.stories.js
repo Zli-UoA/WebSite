@@ -2,6 +2,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/vue';
 
 import AboutItem from '../components/AboutItem.vue';
+import EventItem from '../components/EventItem.vue';
 import MemberItem from '../components/MemberItem.vue';
 
 storiesOf('Components', module)
@@ -45,5 +46,27 @@ storiesOf('Components', module)
                 :member="member"
               />
           `,
+    }),
+  )
+  .add(
+    'EventItem',
+    () => ({
+      components: { EventItem },
+      data() {
+        return {
+          event: {
+            image: 'https://bulma.io/images/placeholders/128x128.png',
+            date: 'YYYY/MM/DD hh:mm ~ hh:mm',
+            title: 'Title',
+            tags: [
+              'tag1',
+              'tag2',
+            ],
+          },
+        };
+      },
+      template: `
+        <event-item :event="event"></event-item>
+      `,
     }),
   );
