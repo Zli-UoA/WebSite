@@ -17,7 +17,10 @@
 <script>
 export default {
   props: {
-    imageUrl: String,
+    imageUrl: {
+      type: String,
+      required: true,
+    },
   },
 };
 </script>
