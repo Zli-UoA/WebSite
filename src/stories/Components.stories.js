@@ -1,9 +1,10 @@
-import { withKnobs } from '@storybook/addon-knobs';
+import { withKnobs, text } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/vue';
 
 import AboutItem from '../components/AboutItem.vue';
 import EventItem from '../components/EventItem.vue';
 import MemberItem from '../components/MemberItem.vue';
+import SearchBox from '../components/SearchBox.vue';
 
 storiesOf('Components', module)
   .addDecorator(withKnobs)
@@ -69,4 +70,30 @@ storiesOf('Components', module)
         <event-item :event="event"></event-item>
       `,
     }),
+  )
+  .add(
+    'Searchbox',
+    () => {
+      const placeholder = text('Placeholder', 'Placeholder', '');
+
+      return {
+        components: { SearchBox },
+        props: {
+          placeholder: { default: placeholder },
+        },
+        data() {
+          return {
+            value: '',
+          };
+        },
+        template: `
+          <div>
+            <search-box :placeholder="placeholder" v-model="value" />
+            <div>
+              <span>input data: {{ value }}</span>
+            </div>
+          </div>
+        `,
+      };
+    },
   );
