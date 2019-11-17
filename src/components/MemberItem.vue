@@ -50,7 +50,8 @@ export default {
   computed: {
     links() {
       return Object.keys(this.member.links)
-        .map(x => ([linkToIcon(x), this.member.links[x]]));
+        .map(x => ([linkToIcon(x), this.member.links[x]]))
+        .filter(tuple => tuple[1] !== null);
     },
   },
 };
