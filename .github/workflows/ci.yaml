@@ -125,7 +125,7 @@ jobs:
             -X POST
             -H "Authorization: token $GITHUB_TOKEN"
             -H "Accept: application/vnd.github.v3+json"
-            --data "{ \"body\": \"Review-App was deployed.\nhttps://${{ github.event.repository.name }}-pr-${{ github.event.number }}-storybook.now.sh\nhttps://${{ github.event.repository.name }-pr-${{ github.event.number }}.now.sh\" }"
+            --data "{ \"body\": \"Review-App was deployed.\nhttps://${{ github.event.repository.name }}-pr-${{ github.event.number }}-storybook.now.sh\nhttps://${{ github.event.repository.name }}-pr-${{ github.event.number }}.now.sh\" }"
             ${{ github.event.pull_request.comments_url }}
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
