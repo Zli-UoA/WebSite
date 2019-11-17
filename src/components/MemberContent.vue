@@ -9,6 +9,7 @@
                 @click="incriment" />
             <member-item
                 v-for="member in showMembers"
+                @click="jumpMemberPage"
                 :key="member.name"
                 :member="member" />
             <font-awesome-icon
@@ -38,6 +39,10 @@ export default {
   },
   computed: {
     showMembers() {
+      if (this.members.length <= 3) {
+        return this.members;
+      }
+
       return [...new Array(3)]
         .map((_, i) => (this.offset + i) % this.members.length)
         .map(i => this.members[i]);
@@ -49,6 +54,9 @@ export default {
     },
     decriment() {
       this.offset = (this.offset <= 0 ? this.members.length : this.offset) - 1;
+    },
+    jumpMemberPage() {
+      console.log('TODO: route member page');
     },
   },
 };
