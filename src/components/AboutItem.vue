@@ -31,7 +31,7 @@ export default {
   }
 
   div.title {
-    font-size: 48px;
+    font-size: 32px;
     text-align: center;
     padding: 8px;
     box-sizing: border-box;
@@ -39,8 +39,8 @@ export default {
 
   p.content {
     width: 100%;
-    word-wrap: break-word;
     margin: 0;
-    font-size: 24px;
+    word-wrap: break-word;
+    font-size: 20px;
   }
 </style>
