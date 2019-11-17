@@ -1,4 +1,6 @@
-import { boolean, color, radios, withKnobs } from '@storybook/addon-knobs';
+import {
+  boolean, color, radios, withKnobs,
+} from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/vue';
 
 import BasicImage from '../components/Atom/BasicImage.vue';
@@ -36,7 +38,8 @@ storiesOf('Atom', module)
       components: { Logo },
       template: '<Logo :size="size" :color="color" />',
     };
-  }).add('TitleTag', () => ({
+  })
+  .add('TitleTag', () => ({
     components: { TitleTag },
     template: `<div>
       <TitleTag>Title</TitleTag>

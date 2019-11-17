@@ -1,0 +1,130 @@
+name: CI
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+jobs:
+    lint:
+      name: run lint
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v1
+        - uses: actions/setup-node@v1
+          with:
+            node-version: 10.x
+        - name: Cache node_modules
+          uses: actions/cache@v1
+          with:
+            path: ~/.npm
+            key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+            restore-keys: |
+              ${{ runner.os }}-node-
+        - name: Install node_modules
+          run: npm install
+        - name: Lint
+          run: npm run lint
+    
+    build_and_deploy_storybook:
+      name: building and deploy storybook
+      needs: lint
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v1
+        - uses: actions/setup-node@v1
+          with:
+            node-version: 10.x
+        - name: Cache node_modules
+          uses: actions/cache@v1
+          with:
+            path: ~/.npm
+            key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+            restore-keys: |
+              ${{ runner.os }}-node-
+        - name: Install node_modules
+          run: npm install
+        - name: build
+          run: npm run build:storybook
+        - name: Deploy to now.sh
+          env:
+            BUILD_ID: ${{ github.sha }}
+            ZEIT_TOKEN: ${{ secrets.ZEIT_TOKEN }}
+          run: >
+            now deploy
+            --local-config=./now.json
+            --env NODE_ENV=production
+            --public
+            --no-clipboard
+            --scope zli
+            --token ${ZEIT_TOKEN}
+            ./storybook-static
+            > ${HOME}/deployment-url.txt
+        - name: Alias with PR number
+          env:
+            ZEIT_TOKEN: ${{ secrets.ZEIT_TOKEN }}
+          run: >
+            now alias
+            --local-config=./now.storybook.json
+            --token ${ZEIT_TOKEN}
+            `cat ${HOME}/deployment-url.txt`
+            ${{ github.event.repository.name }}-pr-${{ github.event.number }}-storybook.now.sh
+
+    build_and_deploy:
+      name: building and deploy
+      needs: lint
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v1
+        - uses: actions/setup-node@v1
+          with:
+            node-version: 10.x
+        - name: Cache node_modules
+          uses: actions/cache@v1
+          with:
+            path: ~/.npm
+            key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+            restore-keys: |
+              ${{ runner.os }}-node-
+        - name: Install node_modules
+          run: npm install
+        - name: build
+          run: npm run build
+        - name: Deploy to now.sh
+          env:
+            BUILD_ID: ${{ github.sha }}
+            ZEIT_TOKEN: ${{ secrets.ZEIT_TOKEN }}
+          run: >
+            now deploy
+            --local-config=./now.json
+            --env NODE_ENV=production
+            --public
+            --no-clipboard
+            --scope zli
+            --token ${ZEIT_TOKEN}
+            ./dist
+            > ${HOME}/deployment-url.txt
+        - name: Alias with PR number
+          env:
+            ZEIT_TOKEN: ${{ secrets.ZEIT_TOKEN }}
+          run: >
+            now alias
+            --local-config=./now.storybook.json
+            --token ${ZEIT_TOKEN}
+            `cat ${HOME}/deployment-url.txt`
+            ${{ github.event.repository.name }}-pr-${{ github.event.number }}.now.sh
+            
+    post_review_app_url:
+      name: Post review app URL when PR opened
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Post review app URL to the GitHub API
+          if: github.event_name == 'pull_request' && github.event.action == 'opened'
+          run: >
+            curl
+            -X POST
+            -H "Authorization: token $GITHUB_TOKEN"
+            -H "Accept: application/vnd.github.v3+json"
+            --data "{ \"body\": \"Review-App was deployed.\nhttps://${{ github.event.repository.name }}-pr-${{ github.event.number }}-storybook.now.sh\nhttps://${{ github.event.repository.name }}-pr-${{ github.event.number }}.now.sh\" }"
+            ${{ github.event.pull_request.comments_url }}
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
