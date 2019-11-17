@@ -24,9 +24,9 @@ jobs:
         - name: Lint
           run: npm run lint
     
-    build_storybook:
-      name: building storybook
-      # needs: lint
+    build_and_deploy_storybook:
+      name: building and deploy storybook
+      needs: lint
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v1
@@ -44,12 +44,5 @@ jobs:
           run: npm install
         - name: build
           run: npm run build:storybook
-    
-    deploy_storybook:
-      name: deploy storybook
-      needs: build_storybook
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v1
         - name: Deploy to now.sh
           run: cat ./storybook-static/index.html
