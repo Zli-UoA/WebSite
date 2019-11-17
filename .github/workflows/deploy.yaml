@@ -89,4 +89,4 @@ jobs:
           --local-config=./now.storybook.json
           --token ${ZEIT_TOKEN}
           `cat ${HOME}/deployment-url.txt`
-          ${{ github.event.repository.name }}.now.sh
+          zli.now.sh
