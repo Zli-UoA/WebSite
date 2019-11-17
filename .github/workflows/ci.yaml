@@ -23,4 +23,33 @@ jobs:
           run: npm install
         - name: Lint
           run: npm run lint
-      
+    
+    build_storybook:
+      name: building storybook
+      needs: lint
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v1
+        - uses: actions/setup-node@v1
+          with:
+            node-version: 10.x
+        - name: Cache node_modules
+          uses: actions/cache@v1
+          with:
+            path: ~/.npm
+            key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+            restore-keys: |
+              ${{ runner.os }}-node-
+        - name: Install node_modules
+          run: npm install
+        - name: build
+          run: npm run build:storybook
+    
+    deploy_storybook:
+      name: deploy storybook
+      needs: build_storybook
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v1
+        - name: Deploy to now.sh
+          run: cat ./storybook-static/index.html
