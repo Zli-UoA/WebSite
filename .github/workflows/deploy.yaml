@@ -50,7 +50,6 @@ jobs:
 
   build_and_deploy:
     name: building and deploy
-    needs: lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
