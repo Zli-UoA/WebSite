@@ -69,7 +69,7 @@ jobs:
             ${{ github.event.repository.name }}-pr-${{ github.event.number }}-storybook.now.sh
 
     build_and_deploy:
-      name: building and deploy storybook
+      name: building and deploy
       needs: lint
       runs-on: ubuntu-latest
       steps:
