@@ -45,4 +45,26 @@ jobs:
         - name: build
           run: npm run build:storybook
         - name: Deploy to now.sh
-          run: cat ./storybook-static/index.html
+          working-directory: ./storybook-static
+          env:
+            BUILD_ID: ${{ github.sha }}
+            ZEIT_TOKEN: ${{ secrets.ZEIT_TOKEN }}
+          run: >
+            now deploy
+            --local-config=../now.storybook.json
+            --build-env NODE_ENV=production
+            --build-env BUILD_ID=${BUILD_ID}
+            --env NODE_ENV=production
+            --public
+            --no-clipboard
+            --token ${ZEIT_TOKEN}
+            > ${HOME}/deployment-url.txt
+        - name: Alias with PR number
+          env:
+            ZEIT_TOKEN: ${{ secrets.ZEIT_TOKEN }}
+          run: >
+            now alias
+            --local-config=./now.storybook.json
+            --token ${ZEIT_TOKEN}
+            `cat ${HOME}/deployment-url.txt`
+            ${{ github.event.repository.name }}-pr-${{ github.event.number }}-storybook.now.sh
