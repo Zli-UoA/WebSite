@@ -25,7 +25,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
     .top-content-wrapper {
         width: 1440px;
         height: 678px;
