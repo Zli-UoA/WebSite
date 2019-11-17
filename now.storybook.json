@@ -1,5 +1,5 @@
 {
   "version": 2,
-  "builds": [{ "src": "index.js", "use": "@now/static" }],
-  "routes": [{ "src": "/", "dest": "index.html" }]
+  "builds": [{ "src": "./storybook-static/**", "use": "@now/static" }],
+  "routes": [{ "src": "/(.*)", "dest": "storybook-static/$1" }]
 }
