@@ -6,13 +6,13 @@ on:
 jobs:
     lint:
       name: run lint
-    runs-on: ubuntu-latest
-    container:
-      image: node:10.17.0
-    steps:
-    - uses: actions/checkout@v1
-    - name: Install node_modules
-      run: npm install
-    - name: Lint
-      run: npm run lint
+      runs-on: ubuntu-latest
+      container:
+        image: node:10.17.0
+      steps:
+      - uses: actions/checkout@v1
+      - name: Install node_modules
+        run: npm install
+      - name: Lint
+        run: npm run lint
       
