@@ -1,5 +1,7 @@
 # zli-website
 
+![](https://github.com/Zli-UoA/WebSite/workflows/CI/badge.svg)
+
 ## Prototype
 [Website Design](https://www.figma.com/file/0POaz9lHzLUs6uEpepUCQG/Website-Design?node-id=0%3A1) (figma)
 
