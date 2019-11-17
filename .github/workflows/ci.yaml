@@ -87,7 +87,7 @@ jobs:
         - name: Install node_modules
           run: npm install
         - name: build
-          run: npm run build:storybook
+          run: npm run build
         - name: Deploy to now.sh
           env:
             BUILD_ID: ${{ github.sha }}
@@ -115,7 +115,6 @@ jobs:
     post_review_app_url:
       name: Post review app URL when PR opened
       runs-on: ubuntu-latest
-      needs: [build_and_deploy_storybook, build_and_deploy]
 
       steps:
         - name: Post review app URL to the GitHub API
