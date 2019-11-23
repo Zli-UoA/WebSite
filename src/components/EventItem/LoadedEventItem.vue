@@ -9,7 +9,7 @@
       height="230px"
     ></basic-image>
     <div class="content">
-      <span class="date">{{ event.date }}</span>
+      <span class="date">{{ date }}</span>
       <span class="title">{{ event.title }}</span>
       <div class="tags">
         <span
@@ -22,12 +22,28 @@
 </template>
 
 <script>
-import BasicImage from './Atom/BasicImage.vue';
+import BasicImage from '../Atom/BasicImage.vue';
 
 export default {
   components: { BasicImage },
   props: {
     event: Object,
+  },
+  computed: {
+    date() {
+      const timeFmt = t => [t.getHours(), t.getMinutes()]
+        .map(x => `0${x}`)
+        .map(x => x.slice(-2))
+        .join(':');
+
+      const { from, to } = this.event.time;
+      const { date } = this.event;
+
+      const dateStr = `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
+      const timeStr = `${timeFmt(from)} ~ ${timeFmt(to)}`;
+
+      return `${dateStr} ${timeStr}`;
+    },
   },
 };
 </script>
@@ -45,8 +61,9 @@ export default {
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1), 0 8px 8px 0 var(--color-black-30);
   }
 
-  /deep/ figure img {
+  .image {
     border-radius: 5px 5px 0 0;
+    overflow: hidden;
   }
 
   .content {
