@@ -1,9 +1,9 @@
 <template>
-    <member-content :members="members" />
+    <member-content :members="members" :is-loading="isLoading" />
 </template>
 
 <script>
-import API from '../js/api';
+import API from '../api';
 import MemberContent from './MemberContent.vue';
 
 export default {

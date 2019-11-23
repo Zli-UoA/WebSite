@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import BasicImage from './Atom/BasicImage.vue';
+import BasicImage from '../Atom/BasicImage.vue';
 
 // linkのKeyからIconの名前に変換する関数
 const linkToIcon = (linkName) => {
