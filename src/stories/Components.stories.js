@@ -2,8 +2,8 @@ import { withKnobs, text } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/vue';
 
 import AboutItem from '../components/AboutItem.vue';
-import EventItem from '../components/EventItem.vue';
-import MemberItem from '../components/MemberItem.vue';
+import EventItem from '../components/EventItem';
+import MemberItem from '../components/MemberItem';
 import SearchBox from '../components/SearchBox.vue';
 
 storiesOf('Components', module)
@@ -53,6 +53,10 @@ storiesOf('Components', module)
           `,
     }),
   )
+  .add('LoadingMemberItem', () => ({
+    components: { MemberItem },
+    template: '<member-item :is-loading="true" />',
+  }))
   .add(
     'EventItem',
     () => ({
@@ -60,13 +64,20 @@ storiesOf('Components', module)
       data() {
         return {
           event: {
-            image: 'https://bulma.io/images/placeholders/128x128.png',
-            date: 'YYYY/MM/DD hh:mm ~ hh:mm',
-            title: 'Title',
+            imageUrl: 'https://drive.google.com/uc?id=11vfejDCxERWrVA-NsR6NYF0MIa4wqfL0',
+            title: 'Test',
+            organizer: 'Zli',
+            date: new Date('2019-11-20T15:00:00.000Z'),
+            time: {
+              from: new Date('1899-12-29T15:00:00.000Z'),
+              to: new Date('1899-12-30T03:00:00.000Z'),
+            },
+            genre: 'LT会',
             tags: [
-              'tag1',
-              'tag2',
+              'LT会',
+              '初心者',
             ],
+            comment: 'test des',
           },
         };
       },
@@ -75,6 +86,12 @@ storiesOf('Components', module)
       `,
     }),
   )
+  .add('LoadingEventItem', () => ({
+    components: { EventItem },
+    template: `
+      <event-item :is-loading="true" />
+    `,
+  }))
   .add(
     'Searchbox',
     () => {
