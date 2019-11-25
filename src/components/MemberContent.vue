@@ -2,8 +2,20 @@
     <div class="member-content-wrapper">
         <title-tag :inverse="true">Members</title-tag>
         <p class="info">Zliのメンバーを紹介します</p>
-        <div class="items">
+        <div v-if="isLoading" class="items">
+          <font-awesome-icon
+              class="arrow"
+              icon="chevron-left" />
+          <member-item :is-loading="true" />
+          <member-item :is-loading="true" />
+          <member-item :is-loading="true" />
+          <font-awesome-icon
+              class="arrow"
+              icon="chevron-right" />
+        </div>
+        <div v-else class="items">
             <font-awesome-icon
+                v-show="members.length >= 3"
                 class="arrow"
                 icon="chevron-left"
                 @click="incriment" />
@@ -13,6 +25,7 @@
                 :key="member.name"
                 :member="member" />
             <font-awesome-icon
+                v-show="members.length >= 3"
                 class="arrow"
                 icon="chevron-right"
                 @click="decriment" />
@@ -22,7 +35,7 @@
 
 <script>
 import TitleTag from './Atom/TitleTag.vue';
-import MemberItem from './MemberItem.vue';
+import MemberItem from './MemberItem';
 
 export default {
   components: { TitleTag, MemberItem },
@@ -30,6 +43,10 @@ export default {
     members: {
       type: Array,
       default: () => [],
+    },
+    isLoading: {
+      type: Boolean,
+      required: true,
     },
   },
   data() {

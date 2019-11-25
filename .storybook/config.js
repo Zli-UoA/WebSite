@@ -9,5 +9,14 @@ import Vue from 'vue'
 
 library.add(fas, fab);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
+Vue.component('router-link', {
+    props: {
+        to: {
+            type: String,
+            default: ''
+        },
+    },
+    template: '<a :href="to"><slot /></a>',
+})
 
 configure(require.context('../src/stories', true, /\.stories\.js$/), module);
