@@ -2,9 +2,7 @@
   <div class="wrapper">
     <title-tag class="title" :inverse="true">Contact</title-tag>
     <div class="content">
-      <google-form
-        form-url="https://docs.google.com/forms/d/e/1FAIpQLSd7JhhbZRIZRBd3Y613k3f8_UWz-o8eWfr-6edhLaveOypWwg/viewform"
-      />
+      <google-form :form-url="formUrl" />
     </div>
   </div>
 </template>
@@ -15,6 +13,12 @@ import GoogleForm from './GoogleForm.vue';
 
 export default {
   components: { GoogleForm, TitleTag },
+  props: {
+    formUrl: {
+      type: String,
+      required: true,
+    },
+  },
 };
 </script>
 
