@@ -13,12 +13,13 @@ storiesOf('Components', module)
     data() {
       return {
         title: 'LT会',
+        imageUrl: 'https://bulma.io/images/placeholders/128x128.png',
         content: '春と秋に開催する、企業を複数招待しておこなう大LT会をはじめ、他大学とのLT会やメンバーが各自でLT会でメンバー同士のフィードバックや日々行ってることのアウトプットをしています。',
       };
     },
     template: `
                           <about-item
-                            image-url="https://bulma.io/images/placeholders/128x128.png"
+                            :image-url="imageUrl"
                             :title="title" >
                             {{ content }}
                           </about-item>`,
