@@ -5,6 +5,7 @@ import TopContent from '../components/TopContent.vue';
 import MemberContent from '../components/MemberContent.vue';
 import EventContent from '../components/EventContent.vue';
 import AboutContent from '../components/AboutContent.vue';
+import ContactContent from '../components/ContactContent.vue';
 
 storiesOf('Contents', module)
   .addDecorator(withKnobs)
@@ -138,5 +139,16 @@ storiesOf('Contents', module)
     },
     template: `
       <about-content :abouts="abouts" />
+    `,
+  }))
+  .add('ContactContent', () => ({
+    components: { ContactContent },
+    data() {
+      return {
+        formUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSd7JhhbZRIZRBd3Y613k3f8_UWz-o8eWfr-6edhLaveOypWwg/viewform',
+      };
+    },
+    template: `
+      <contact-content :form-url="formUrl" />
     `,
   }));
