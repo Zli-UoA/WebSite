@@ -4,6 +4,7 @@ import { storiesOf } from '@storybook/vue';
 import TopContent from '../components/TopContent.vue';
 import MemberContent from '../components/MemberContent.vue';
 import EventContent from '../components/EventContent.vue';
+import InitAnimation from '../components/InitAnimation.vue';
 
 storiesOf('Contents', module)
   .addDecorator(withKnobs)
@@ -110,5 +111,11 @@ storiesOf('Contents', module)
     },
     template: `
       <event-content :events="events" />
+    `,
+  }))
+  .add('InitAnimation', () => ({
+    components: { InitAnimation },
+    template: `
+      <init-animation />
     `,
   }));
