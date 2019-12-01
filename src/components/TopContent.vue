@@ -27,8 +27,8 @@ export default {
 
 <style scoped>
     .top-content-wrapper {
-        width: 1440px;
-        height: 678px;
+        width: 100vw;
+        height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
