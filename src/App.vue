@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <header-container />
     <top-container />
     <about-container />
     <member-container />
@@ -14,6 +15,7 @@ import AboutContainer from './components/AboutContainer.vue';
 import MemberContainer from './components/MemberContainer.vue';
 import EventContainer from './components/EventContainer.vue';
 import ContactContainer from './components/ContactContainer.vue';
+import HeaderContainer from './components/HeaderContainer.vue';
 
 export default {
   components: {
@@ -22,6 +24,7 @@ export default {
     MemberContainer,
     EventContainer,
     ContactContainer,
+    HeaderContainer,
   },
 };
 </script>
