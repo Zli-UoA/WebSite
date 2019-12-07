@@ -6,7 +6,7 @@ import MemberContent from '../components/MemberContent.vue';
 import EventContent from '../components/EventContent.vue';
 import AboutContent from '../components/AboutContent.vue';
 import ContactContent from '../components/ContactContent.vue';
-import HeaderContent from '../components/HeaderContent.vue'
+import HeaderContent from '../components/HeaderContent.vue';
 
 storiesOf('Contents', module)
   .addDecorator(withKnobs)
@@ -153,8 +153,8 @@ storiesOf('Contents', module)
       <contact-content :form-url="formUrl" />
     `,
   }))
-  .add('HeaderContent',()=> ({
+  .add('HeaderContent', () => ({
     components: { HeaderContent },
-    template: `<HeaderContent />`
+    template: '<HeaderContent />'
     ,
   }));
