@@ -1,14 +1,14 @@
 <template>
   <header class="header-wrapper">
     <div class="header-inner">
-      <Logo class="header-logo"  :color="logoColor"/>
+      <Logo class="header-logo"  :color="logoColor" :size="logoSize"/>
       <nav class="header-nav">
         <ul class="header-nav__list">
           <li class="header-nav__list__items"
               v-for="navItem in navigations"
               :key="navItem.id"
               @click="scrollEvent(navItem.id)">
-            <a href="">{{navItem.name}}</a>
+            <a @click="scrollEvent(navItem.id)">{{navItem.name}}</a>
           </li>
         </ul>
       </nav>
@@ -22,7 +22,7 @@ export default {
   components: { Logo },
   data() {
     return {
-      logoSize: 'medium',
+      logoSize: 'small',
       logoColor: 'black',
       navigations: [
         {
@@ -50,8 +50,7 @@ export default {
   },
   methods: {
     scrollEvent(navigationId) {
-      console.log(navigationId);
-      // this.$emit('navigation-event', navigationId);
+      this.$emit('event-navigate', navigationId);
     },
   },
 };
@@ -59,10 +58,12 @@ export default {
 <style scoped >
   header.header-wrapper {
     height: 64px;
-    width: 100％;
-    padding: 21px 36px;
+    width: 100%;
+    adding: 21px 36px;
     margin: 0;
+    padding: 0 3%;
     background-color: var(--color-black);
+    box-sizing: border-box;
   }
 
   .header-inner {
