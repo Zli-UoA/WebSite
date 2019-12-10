@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/vue';
 
 import MemberContainer from '../components/MemberContainer.vue';
 import EventContainer from '../components/EventContainer.vue';
+import HeaderContainer from '../components/HeaderContainer.vue';
 
 storiesOf('Container', module)
   .addDecorator(withKnobs)
@@ -13,4 +14,10 @@ storiesOf('Container', module)
   .add('Event', () => ({
     components: { EventContainer },
     template: '<event-container />',
+  }))
+  .add('HeaderContainer', () => ({
+    components: { HeaderContainer },
+    template: `
+      <HeaderContainer />
+    `,
   }));
