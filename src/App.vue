@@ -26,17 +26,6 @@ export default {
     ContactContainer,
     HeaderContainer,
   },
-  data() {
-    return {
-      scrollElements: {
-        topContent: null,
-        aboutContent: null,
-        memberContent: null,
-        eventContent: null,
-        contactContent: null,
-      },
-    };
-  },
 };
 </script>
 
