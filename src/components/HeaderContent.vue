@@ -6,9 +6,8 @@
         <ul class="header-nav__list">
           <li class="header-nav__list__items"
               v-for="navItem in navigations"
-              :key="navItem.id"
-              @click="scrollEvent(navItem.id)">
-            <a @click="scrollEvent(navItem.id)">{{navItem.name}}</a>
+              :key="navItem.id">
+            <a :href="'#'+ navItem.name">{{navItem.name}}</a>
           </li>
         </ul>
       </nav>
@@ -59,7 +58,7 @@ export default {
   header.header-wrapper {
     height: 64px;
     width: 100%;
-    adding: 21px 36px;
+    padding: 21px 36px;
     margin: 0;
     padding: 0 3%;
     background-color: var(--color-black);

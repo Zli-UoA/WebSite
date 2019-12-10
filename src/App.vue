@@ -1,11 +1,11 @@
 <template>
   <div id="app">
-    <header-container @event-nav="scrollEvent($event)" />
-    <top-container id="top-container"/>
-    <about-container id="about-container"/>
-    <member-container id="member-container"/>
-    <event-container id="event-container"/>
-    <contact-container id="contact-container"/>
+    <header-container/>
+    <top-container id="Home"/>
+    <about-container id="About"/>
+    <member-container id="Member"/>
+    <event-container id="Events"/>
+    <contact-container id="Contact"/>
   </div>
 </template>
 
@@ -36,28 +36,6 @@ export default {
         contactContent: null,
       },
     };
-  },
-  methods: {
-    scrollEvent(navId) {
-      if (navId === 1) {
-        window.scrollTo(0, this.scrollElements.topContent);
-      } else if (navId === 2) {
-        window.scrollTo(0, this.scrollElements.aboutContent);
-      } else if (navId === 3) {
-        window.scrollTo(0, this.scrollElements.memberContent);
-      } else if (navId === 4) {
-        window.scrollTo(0, this.scrollElements.eventContent);
-      } else {
-        window.scrollTo(0, this.scrollElements.contactContent);
-      }
-    },
-  },
-  mounted() {
-    this.scrollElements.topContent = document.getElementById('top-container').getBoundingClientRect().top;
-    this.scrollElements.aboutContent = document.getElementById('about-container').getBoundingClientRect().top;
-    this.scrollElements.memberContent = document.getElementById('member-container').getBoundingClientRect().top;
-    this.scrollElements.eventContent = document.getElementById('event-container').getBoundingClientRect().top;
-    this.scrollElements.contactContent = document.getElementById('contact-container').getBoundingClientRect().top;
   },
 };
 </script>
