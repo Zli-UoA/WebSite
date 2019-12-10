@@ -1,7 +1,7 @@
 <template>
   <header class="header-wrapper">
     <div class="header-inner">
-      <Logo class="header-logo"  :color="logoColor" :size="logoSize"/>
+      <Logo class="header-logo"  :color="color" :size="size"/>
       <nav class="header-nav">
         <ul class="header-nav__list">
           <li class="header-nav__list__items"
@@ -19,37 +19,18 @@ import Logo from './Atom/Logo.vue';
 
 export default {
   components: { Logo },
-  data() {
-    return {
-      logoSize: 'small',
-      logoColor: 'black',
-      navigations: [
-        {
-          id: 1,
-          name: 'Home',
-        },
-        {
-          id: 2,
-          name: 'About',
-        },
-        {
-          id: 3,
-          name: 'Member',
-        },
-        {
-          id: 4,
-          name: 'Events',
-        },
-        {
-          id: 5,
-          name: 'Contact',
-        },
-      ],
-    };
-  },
-  methods: {
-    scrollEvent(navigationId) {
-      this.$emit('event-navigate', navigationId);
+  props: {
+    size: {
+      type: String,
+      required: true,
+    },
+    color: {
+      type: String,
+      required: true,
+    },
+    navigations: {
+      type: Array,
+      required: true,
     },
   },
 };

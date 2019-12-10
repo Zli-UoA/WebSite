@@ -1,5 +1,5 @@
 <template>
-  <HeaderContent @event-navigate="emitNavigate($event)"/>
+  <HeaderContent :size="logoSize" :color="logoColor" :navigations="navigations"/>
 </template>
 
 <script>
@@ -9,10 +9,33 @@ export default {
   components: {
     HeaderContent,
   },
-  methods: {
-    emitNavigate(navId) {
-      this.$emit('event-nav', navId);
-    },
+  data() {
+    return {
+      logoSize: 'small',
+      logoColor: 'black',
+      navigations: [
+        {
+          id: 1,
+          name: 'Home',
+        },
+        {
+          id: 2,
+          name: 'About',
+        },
+        {
+          id: 3,
+          name: 'Member',
+        },
+        {
+          id: 4,
+          name: 'Events',
+        },
+        {
+          id: 5,
+          name: 'Contact',
+        },
+      ],
+    };
   },
 };
 </script>
