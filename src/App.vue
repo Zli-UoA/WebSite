@@ -1,10 +1,11 @@
 <template>
   <div id="app">
-    <top-container />
-    <about-container />
-    <member-container />
-    <event-container />
-    <contact-container />
+    <header-container/>
+    <top-container id="Home"/>
+    <about-container id="About"/>
+    <member-container id="Member"/>
+    <event-container id="Events"/>
+    <contact-container id="Contact"/>
   </div>
 </template>
 
@@ -14,6 +15,7 @@ import AboutContainer from './components/AboutContainer.vue';
 import MemberContainer from './components/MemberContainer.vue';
 import EventContainer from './components/EventContainer.vue';
 import ContactContainer from './components/ContactContainer.vue';
+import HeaderContainer from './components/HeaderContainer.vue';
 
 export default {
   components: {
@@ -22,11 +24,15 @@ export default {
     MemberContainer,
     EventContainer,
     ContactContainer,
+    HeaderContainer,
   },
 };
 </script>
 
 <style>
+html {
+  scroll-behavior: smooth;
+}
 body {
   margin: 0;
   padding: 0;
