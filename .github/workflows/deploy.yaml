@@ -43,7 +43,7 @@ jobs:
           ZEIT_TOKEN: ${{ secrets.ZEIT_TOKEN }}
         run: >
           now alias
-          --local-config=./now.storybook.json
+          --local-config=./now.json
           --token ${ZEIT_TOKEN}
           `cat ${HOME}/deployment-url.txt`
           ${{ github.event.repository.name }}-storybook.now.sh
@@ -86,7 +86,7 @@ jobs:
           ZEIT_TOKEN: ${{ secrets.ZEIT_TOKEN }}
         run: >
           now alias
-          --local-config=./now.storybook.json
+          --local-config=./now.json
           --token ${ZEIT_TOKEN}
           `cat ${HOME}/deployment-url.txt`
           zli-website.now.sh
