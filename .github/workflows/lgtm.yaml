@@ -1,0 +1,19 @@
+name: Send LGTM
+on:
+  pull_request_review:
+    types: [submitted]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@1.0.0
+      - uses: micnncim/action-lgtm-reaction@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_PULL_REQUEST_NUMBER: ${{ github.event.pull_request.number }}
+          GITHUB_REVIEW_BODY: ${{ github.event.review.body }}
+          GITHUB_REVIEW_ID: ${{ github.event.review.id }}
+        with:
+          source: 'lgtmapp'
