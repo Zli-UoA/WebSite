@@ -12,7 +12,7 @@ export default {
   data() {
     return {
       logoSize: 'small',
-      logoColor: 'yellow',
+      logoColor: 'gray',
       navigations: [
         {
           id: 1,
