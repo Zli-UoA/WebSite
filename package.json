@@ -16,13 +16,14 @@
     "@fortawesome/free-solid-svg-icons": "^5.11.2",
     "@fortawesome/vue-fontawesome": "^0.1.7",
     "@storybook/addon-knobs": "^5.2.4",
-    "@storybook/vue": "^5.2.4",
+    "@storybook/vue": "^5.2.7",
     "core-js": "^3.1.2",
     "vue": "^2.6.10",
     "vue-router": "^3.0.6",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
+    "@storybook/vue": "^5.2.7",
     "@vue/cli-plugin-babel": "^4.0.0",
     "@vue/cli-plugin-e2e-cypress": "^4.0.0",
     "@vue/cli-plugin-eslint": "^4.0.0",
@@ -35,6 +36,7 @@
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
     "lint-staged": "^9.4.2",
+    "now": "^16.7.0",
     "vue-template-compiler": "^2.6.10"
   },
   "gitHooks": {

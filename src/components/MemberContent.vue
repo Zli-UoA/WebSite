@@ -73,7 +73,7 @@ export default {
       this.offset = (this.offset <= 0 ? this.members.length : this.offset) - 1;
     },
     jumpMemberPage() {
-      console.log('TODO: route member page');
+      // TODO: route member page
     },
   },
 };

@@ -1,13 +1,15 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faGlobe } from '@fortawesome/free-solid-svg-icons';
+import { faGlobe, faChevronCircleDown } from '@fortawesome/free-solid-svg-icons';
+import { faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import Vue from 'vue';
 
 import App from './App.vue';
 import router from './router';
 import store from './store';
+import './style/constant.css';
 
-library.add(faGlobe);
+library.add(faGlobe, faTwitter, faGithub, faChevronCircleDown);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 Vue.config.productionTip = false;

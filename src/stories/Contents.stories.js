@@ -5,6 +5,8 @@ import TopContent from '../components/TopContent.vue';
 import MemberContent from '../components/MemberContent.vue';
 import EventContent from '../components/EventContent.vue';
 import InitAnimation from '../components/InitAnimation.vue';
+import AboutContent from '../components/AboutContent.vue';
+import ContactContent from '../components/ContactContent.vue';
 
 storiesOf('Contents', module)
   .addDecorator(withKnobs)
@@ -68,10 +70,7 @@ storiesOf('Contents', module)
               to: new Date('1899-12-30T03:00:00.000Z'),
             },
             genre: 'LT会',
-            tags: [
-              'LT会',
-              '初心者',
-            ],
+            tags: ['LT会', '初心者'],
             comment: 'test des',
           },
           {
@@ -84,10 +83,7 @@ storiesOf('Contents', module)
               to: new Date('1899-12-30T03:00:00.000Z'),
             },
             genre: 'LT会',
-            tags: [
-              'LT会',
-              '初心者',
-            ],
+            tags: ['LT会', '初心者'],
             comment: 'test des',
           },
           {
@@ -100,10 +96,7 @@ storiesOf('Contents', module)
               to: new Date('1899-12-30T03:00:00.000Z'),
             },
             genre: 'LT会',
-            tags: [
-              'LT会',
-              '初心者',
-            ],
+            tags: ['LT会', '初心者'],
             comment: 'test des',
           },
         ],
@@ -113,9 +106,51 @@ storiesOf('Contents', module)
       <event-content :events="events" />
     `,
   }))
+  .add('AboutContent', () => ({
+    components: { AboutContent },
+    data() {
+      return {
+        abouts: [
+          {
+            title: 'LT会',
+            imageUrl: 'https://bulma.io/images/placeholders/128x128.png',
+            content:
+              '春と秋に開催する、企業を複数招待しておこなう大LT会をはじめ、他大学とのLT会やメンバーが各自でLT会でメンバー同士のフィードバックや日々行ってることのアウトプットをしています。',
+          },
+          {
+            title: '勉強会',
+            imageUrl: 'https://bulma.io/images/placeholders/128x128.png',
+            content:
+              '　メンバーが自分の得意な分野や気になっている言語など、一緒に勉強したい仲間を集めて勉強会を開催する場を提供します。',
+          },
+          {
+            title: 'ハッカソン',
+            imageUrl: 'https://bulma.io/images/placeholders/128x128.png',
+            content:
+              '　会津地元の企業や、サークルの学生主体でハッカソンを開いています。開発スキルを伸ばせるいい機会となり、大いに盛り上がります。',
+          },
+        ],
+      };
+    },
+    template: `
+      <about-content :abouts="abouts" />
+    `,
+  }))
+  .add('ContactContent', () => ({
+    components: { ContactContent },
+    data() {
+      return {
+        formUrl:
+          'https://docs.google.com/forms/d/e/1FAIpQLSd7JhhbZRIZRBd3Y613k3f8_UWz-o8eWfr-6edhLaveOypWwg/viewform',
+      };
+    },
+    template: `
+      <contact-content :form-url="formUrl" />
+    `,
+  }))
   .add('InitAnimation', () => ({
     components: { InitAnimation },
     template: `
       <init-animation />
-    `,
+      `,
   }));
