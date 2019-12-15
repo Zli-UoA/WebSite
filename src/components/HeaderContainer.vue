@@ -1,5 +1,5 @@
 <template>
-  <HeaderContent :size="logoSize" :color="logoColor" :navigations="navigations"/>
+  <HeaderContent :size="logoSize" :color="logoColor" :navigations="navigations" />
 </template>
 
 <script>
@@ -12,7 +12,7 @@ export default {
   data() {
     return {
       logoSize: 'small',
-      logoColor: 'black',
+      logoColor: 'yellow',
       navigations: [
         {
           id: 1,
