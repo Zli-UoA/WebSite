@@ -1,5 +1,5 @@
 <template>
-    <member-content :members="members" :is-loading="isLoading" />
+  <member-content :members="members" :is-loading="isLoading" />
 </template>
 
 <script>
@@ -17,6 +17,7 @@ export default {
   async created() {
     this.members = await API.getMembers();
     this.isLoading = false;
+    this.$emit('loaded');
   },
 };
 </script>

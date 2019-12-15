@@ -1,5 +1,5 @@
 <template>
-    <event-content :events="events" :is-loading="isLoading" />
+  <event-content :events="events" :is-loading="isLoading" />
 </template>
 
 <script>
@@ -17,10 +17,9 @@ export default {
   async created() {
     this.events = await API.getEvents();
     this.isLoading = false;
+    this.$emit('loaded');
   },
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

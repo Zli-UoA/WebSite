@@ -37,7 +37,7 @@ export default {};
 .z {
   stroke-dasharray: 2000;
   stroke-dashoffset: 2000;
-  animation: z 4000ms ease 0s infinite;
+  animation: z 2000ms ease-in-out 0s 1 forwards;
 }
 
 @keyframes z {
@@ -45,25 +45,19 @@ export default {};
     stroke-dashoffset: 2000;
   }
 
-  45% {
-    stroke-dashoffset: 0;
-  }
-
-  55% {
-    stroke-dashoffset: 0;
-  }
-
   100% {
-    stroke-dashoffset: -2000;
+    stroke-dashoffset: 0;
   }
 }
 
 .l {
-  animation: l 4000ms ease 0s infinite;
+  opacity: 0;
+  animation: l 2000ms ease 0s 1 forwards;
 }
 
 .i {
-  animation: l 4000ms ease 250ms infinite;
+  opacity: 0;
+  animation: l 2000ms ease 250ms 1 forwards;
 }
 
 @keyframes l {
@@ -71,20 +65,8 @@ export default {};
     opacity: 0;
   }
 
-  25% {
-    opacity: 1;
-  }
-
-  60% {
-    opacity: 1;
-  }
-
-  80% {
-    opacity: 0;
-  }
-
   100% {
-    opacity: 0;
+    opacity: 1;
   }
 }
 </style>
