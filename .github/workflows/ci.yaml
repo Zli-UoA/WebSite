@@ -48,25 +48,7 @@ jobs:
         env:
           BUILD_ID: ${{ github.sha }}
           ZEIT_TOKEN: ${{ secrets.ZEIT_TOKEN }}
-        run: >
-          now deploy
-          --local-config=./now.json
-          --env NODE_ENV=production
-          --public
-          --no-clipboard
-          --scope zli
-          --token ${ZEIT_TOKEN}
-          ./storybook-static
-          > ${HOME}/deployment-url.txt
-      - name: Alias with PR number
-        env:
-          ZEIT_TOKEN: ${{ secrets.ZEIT_TOKEN }}
-        run: >
-          now alias
-          --local-config=./now.json
-          --token ${ZEIT_TOKEN}
-          `cat ${HOME}/deployment-url.txt`
-          ${{ github.event.repository.name }}-pr-${{ github.event.number }}-storybook.now.sh
+        run: ./bin/deploy.sh ./storybook-static ${{ github.event.repository.name }}-pr-${{ github.event.number }}-storybook.now.sh
 
   build_and_deploy:
     name: building and deploy
@@ -92,25 +74,7 @@ jobs:
         env:
           BUILD_ID: ${{ github.sha }}
           ZEIT_TOKEN: ${{ secrets.ZEIT_TOKEN }}
-        run: >
-          now deploy
-          --local-config=./now.json
-          --env NODE_ENV=production
-          --public
-          --no-clipboard
-          --scope zli
-          --token ${ZEIT_TOKEN}
-          ./dist
-          > ${HOME}/deployment-url.txt
-      - name: Alias with PR number
-        env:
-          ZEIT_TOKEN: ${{ secrets.ZEIT_TOKEN }}
-        run: >
-          now alias
-          --local-config=./now.json
-          --token ${ZEIT_TOKEN}
-          `cat ${HOME}/deployment-url.txt`
-          ${{ github.event.repository.name }}-pr-${{ github.event.number }}.now.sh
+        run: ./bin/deploy.sh ./dist ${{ github.event.repository.name }}-pr-${{ github.event.number }}.now.sh
           
   post_review_app_url:
     name: Post review app URL when PR opened
