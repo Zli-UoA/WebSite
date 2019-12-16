@@ -1,0 +1,29 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "engines": {
+    "node": ">=10.x"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./dist/main.js",
+    "watch": "parcel watch -t node --bundle-node-modules ./src/main.ts",
+    "build": "parcel build -t node --bundle-node-modules ./src/main.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/microrouter": "^3.1.1",
+    "parcel": "^1.12.4",
+    "typescript": "^3.7.3"
+  },
+  "dependencies": {
+    "@mojotech/json-type-validation": "^3.1.0",
+    "faunadb": "^2.10.0",
+    "micro": "^9.3.4",
+    "microrouter": "^3.1.3"
+  }
+}
