@@ -39,12 +39,23 @@ export default {
         member: false,
         event: false,
       },
+      showHeader: false,
     };
   },
   computed: {
     isInitializing() {
       return !Object.values(this.isLoaded).every(x => x);
     },
+  },
+  mounted() {
+    const opts = {
+      threshold: 0,
+      rootMargin: '-25% 0px 0px 0px',
+    };
+    const observer = new IntersectionObserver((ev) => {
+      this.showHeader = !ev[0].isIntersecting;
+    }, opts);
+    observer.observe(this.$refs.anchor);
   },
 };
 </script>
@@ -73,6 +84,21 @@ body {
 .init-enter,
 .init-leave-to {
   transform: scale3d(2, 2, 2);
+  opacity: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.header-enter-active,
+.header-leave-active {
+  transition: 0.5s ease-out;
+}
+
+.header-enter,
+.header-leave-to {
+  transform: translateY(-100%);
   opacity: 0;
 }
 </style>
