@@ -6,7 +6,8 @@
     frameborder="0"
     marginheight="0"
     marginwidth="0"
-  >読み込んでいます…</iframe>
+    >読み込んでいます…</iframe
+  >
 </template>
 
 <script>
@@ -28,5 +29,4 @@ export default {
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
