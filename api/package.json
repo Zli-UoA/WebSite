@@ -7,8 +7,7 @@
     "node": ">=10.x"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./dist/main.js",
+    "start": "now dev -d",
     "watch": "parcel watch -t node --bundle-node-modules ./src/main.ts",
     "build": "parcel build -t node --bundle-node-modules ./src/main.ts"
   },
@@ -19,6 +18,7 @@
     "@types/jsonwebtoken": "^8.3.5",
     "@types/micro-cors": "^0.1.0",
     "@types/microrouter": "^3.1.1",
+    "now": "^16.7.0",
     "parcel": "^1.12.4",
     "typescript": "^3.7.3"
   },
