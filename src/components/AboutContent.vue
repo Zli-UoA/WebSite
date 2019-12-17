@@ -12,7 +12,8 @@
         :key="about.title"
         :image-url="about.imageUrl"
         :title="about.title"
-      >{{ about.content }}</about-item>
+        >{{ about.content }}</about-item
+      >
     </div>
   </div>
 </template>
@@ -34,11 +35,13 @@ export default {
 
 <style scoped>
 .about-content-wrapper {
+  width: 100vw;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 100px 0;
+  padding: 64px 0;
 }
 
 p {

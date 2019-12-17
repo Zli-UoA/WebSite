@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <title-tag class="title" :inverse="true">Contact</title-tag>
+    <title-tag :style="{ 'margin-bottom': '64px' }" :inverse="true">Contact</title-tag>
     <div class="content">
       <google-form :form-url="formUrl" />
     </div>
@@ -24,15 +24,13 @@ export default {
 
 <style scoped>
 .wrapper {
+  width: 100vw;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: var(--color-black);
-  padding: 98px;
-}
-
-.content {
-  padding-top: 100px;
+  padding: 64px 0;
 }
 </style>
