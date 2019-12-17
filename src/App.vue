@@ -4,8 +4,11 @@
       <init-animation class="init" />
     </transition>
     <div v-show="!isInitializing">
-      <header-container />
+      <transition name="header">
+        <header-container v-show="showHeader" />
+      </transition>
       <top-container id="Home" />
+      <span ref="anchor" />
       <about-container id="About" />
       <member-container id="Member" @loaded="isLoaded.member = true" />
       <event-container id="Events" @loaded="isLoaded.event = true" />
