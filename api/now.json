@@ -13,6 +13,8 @@
     }
   ],
   "env": {
-    "FAUNA_SECRET_KEY": "@fauna-secret-key"
+    "FAUNA_SECRET_KEY": "@fauna-secret-key",
+    "SALT": "@password-salt",
+    "TOKEN_SECRET": "@token-secret"
   }
 }

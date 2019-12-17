@@ -1,11 +1,14 @@
 import { AugmentedRequestHandler, ServerResponse } from 'microrouter';
 import { json, send } from 'micro';
-import { member, event, eventEncoder } from './model';
-import { Repository, Member, Event } from './Repository';
+import { member, event, eventEncoder, Role } from './model';
+import { Repository, Member, Event, Account } from './Repository';
 import { isDecoderError } from '@mojotech/json-type-validation';
 import faunadb from 'faunadb';
+import Authorizer, { authData } from './authorizer';
 
-type WithRepository<T extends Repository> = (repo: T) => AugmentedRequestHandler;
+type WithRepository<T extends Repository, U = AugmentedRequestHandler> = (repo: T) => U;
+
+type WithAuthorizer<T = AugmentedRequestHandler> = (authorizer: Authorizer) => T;
 
 const errorHandle = (res: ServerResponse, e: Error) => {
   if (isDecoderError(e)) {
@@ -17,7 +20,7 @@ const errorHandle = (res: ServerResponse, e: Error) => {
 };
 
 export namespace Handler {
-  export const createMember: WithRepository<Member.Repository> = repo => async (req, res) => {
+  export const createMember: WithRepository<Member.Repository> = (repo) => async (req, res) => {
     const value = await json(req);
 
     try {
@@ -30,7 +33,7 @@ export namespace Handler {
     }
   };
 
-  export const getMember: WithRepository<Member.Repository> = repo => async (req, res) => {
+  export const getMember: WithRepository<Member.Repository> = (repo) => async (req, res) => {
     const id = req.params.id;
 
     try {
@@ -42,7 +45,7 @@ export namespace Handler {
     }
   };
 
-  export const getMembers: WithRepository<Member.Repository> = repo => async (_, res) => {
+  export const getMembers: WithRepository<Member.Repository> = (repo) => async (_, res) => {
     try {
       const members = await repo.getAll();
       send(res, 200, members);
@@ -52,7 +55,7 @@ export namespace Handler {
     }
   };
 
-  export const createEvent: WithRepository<Event.Repository> = repo => async (req, res) => {
+  export const createEvent: WithRepository<Event.Repository> = (repo) => async (req, res) => {
     const value = await json(req);
 
     try {
@@ -66,7 +69,7 @@ export namespace Handler {
     }
   };
 
-  export const getEvent: WithRepository<Event.Repository> = repo => async (req, res) => {
+  export const getEvent: WithRepository<Event.Repository> = (repo) => async (req, res) => {
     const id = req.params.id;
 
     try {
@@ -78,12 +81,56 @@ export namespace Handler {
     }
   };
 
-  export const getEvents: WithRepository<Event.Repository> = repo => async (_, res) => {
+  export const getEvents: WithRepository<Event.Repository> = (repo) => async (_, res) => {
     try {
       const events = await repo.getAll();
       send(res, 200, events.map(eventEncoder));
     } catch (e) {
       console.error(e);
+      errorHandle(res, e);
+    }
+  };
+
+  export const createAccount: WithRepository<Account.Repository, WithAuthorizer> = (repo) => (
+    authorizer
+  ) => async (req, res) => {
+    const body = await json(req);
+
+    try {
+      const data = await authData.runPromise(body);
+      const hash = authorizer.getHash(data.password);
+
+      const account = { id: data.id, role: 'Admin' as Role, hash };
+      await repo.create(account);
+
+      const token = authorizer.createToken(account);
+      send(res, 200, { token });
+    } catch (e) {
+      console.log(e);
+      errorHandle(res, e);
+    }
+  };
+
+  export const signin: WithRepository<Account.Repository, WithAuthorizer> = (repo) => (
+    authorizer
+  ) => async (req, res) => {
+    const body = await json(req);
+
+    try {
+      const data = await authData.runPromise(body);
+      const hash = authorizer.getHash(data.password);
+
+      const account = await repo.get(data.id);
+
+      if (account.hash !== hash) {
+        send(res, 401, { message: 'failed to sign in' });
+        return;
+      }
+
+      const token = authorizer.createToken(account);
+      send(res, 200, { token });
+    } catch (e) {
+      console.log(e);
       errorHandle(res, e);
     }
   };

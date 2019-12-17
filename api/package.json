@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/jsonwebtoken": "^8.3.5",
     "@types/microrouter": "^3.1.1",
     "parcel": "^1.12.4",
     "typescript": "^3.7.3"
@@ -23,6 +24,7 @@
   "dependencies": {
     "@mojotech/json-type-validation": "^3.1.0",
     "faunadb": "^2.10.0",
+    "jsonwebtoken": "^8.5.1",
     "micro": "^9.3.4",
     "microrouter": "^3.1.3"
   }

@@ -1,6 +1,14 @@
-import { object, string, optional, number, array } from '@mojotech/json-type-validation';
+import { object, string, optional, number, array, succeed } from '@mojotech/json-type-validation';
 
 export type WithID<T> = { id: string } & T;
+
+export type Role = 'Admin';
+
+export interface Account {
+  id: string;
+  role: Role;
+  hash: string;
+}
 
 export interface Member {
   imageUrl: string;
@@ -26,6 +34,19 @@ export interface Event {
   comment: string;
 }
 
+export const account = object({
+  id: string(),
+  role: string().andThen((x) => {
+    switch (x) {
+      case 'Admin':
+        return succeed(x);
+    }
+
+    return fail('error');
+  }),
+  hash: string(),
+});
+
 export const member = object({
   imageUrl: string(),
   name: string(),
@@ -40,10 +61,10 @@ export const event = object({
   image: string(),
   title: string(),
   organizer: string(),
-  date: number().map(n => new Date(n)),
+  date: number().map((n) => new Date(n)),
   time: object({
-    from: number().map(n => new Date(n)),
-    to: number().map(n => new Date(n)),
+    from: number().map((n) => new Date(n)),
+    to: number().map((n) => new Date(n)),
   }),
   genre: string(),
   tags: array(string()),
