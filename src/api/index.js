@@ -1,11 +1,13 @@
+const baseURL = 'https://api.zli.now.sh';
+
 const getMembers = async () => {
-  const url = 'https://script.google.com/macros/s/AKfycbyifZfvat-lEALV86JrTlPJvQPVlN5CqGurct9mIZKSehnMdSw/exec';
+  const url = `${baseURL}/members`;
   const members = await fetch(url).then(x => x.json());
   return members;
 };
 
 const getEvents = async () => {
-  const url = 'https://script.google.com/macros/s/AKfycby0-Y5zywIbErcLROJR_15RigfSIeHMINpmu3sknOc6MNSpKlht/exec';
+  const url = `${baseURL}/events`;
   const events = await fetch(url).then(x => x.json());
   return events.map(event => ({
     ...event,
