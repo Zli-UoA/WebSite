@@ -1,0 +1,46 @@
+import faunadb, { query as q } from 'faunadb';
+import { Event, event, withID, WithID, eventEncoder } from '../model';
+import { FaunaResponseDecoder } from '../utils';
+import { array } from '@mojotech/json-type-validation';
+
+export interface Repository {
+  create: (event: Event) => Promise<string>;
+  get: (id: string) => Promise<WithID<Event>>;
+  getAll: () => Promise<Array<WithID<Event>>>;
+}
+
+export class FaunaRepository implements Repository {
+  client: faunadb.Client;
+
+  constructor(secret: string) {
+    this.client = new faunadb.Client({ secret });
+  }
+
+  private eventWithID = FaunaResponseDecoder<Event>(event).map(x =>
+    withID<Event>(x.ref.id)(x.data)
+  );
+
+  create(event: Event) {
+    return this.client
+      .query(
+        q.Create(q.Collection('Event'), {
+          data: eventEncoder(event),
+        })
+      )
+      .then(this.eventWithID.runPromise)
+      .then(x => x.id);
+  }
+
+  get(id: string) {
+    return this.client
+      .query(q.Get(q.Ref(q.Collection('Event'), id)))
+      .then(this.eventWithID.runPromise);
+  }
+
+  getAll() {
+    return this.client
+      .query(q.Map(q.Paginate(q.Match(q.Index('all_event'))), q.Lambda('x', q.Get(q.Var('x')))))
+      .then(x => (x as any).data)
+      .then(array(this.eventWithID).runPromise);
+  }
+}

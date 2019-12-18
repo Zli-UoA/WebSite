@@ -1,0 +1,33 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "engines": {
+    "node": ">=10.x"
+  },
+  "scripts": {
+    "start": "now dev -d",
+    "watch": "parcel watch -t node --bundle-node-modules ./src/main.ts",
+    "build": "parcel build -t node --bundle-node-modules ./src/main.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jsonwebtoken": "^8.3.5",
+    "@types/micro-cors": "^0.1.0",
+    "@types/microrouter": "^3.1.1",
+    "now": "^16.7.0",
+    "parcel": "^1.12.4",
+    "typescript": "^3.7.3"
+  },
+  "dependencies": {
+    "@mojotech/json-type-validation": "^3.1.0",
+    "faunadb": "^2.10.0",
+    "jsonwebtoken": "^8.5.1",
+    "micro": "^9.3.4",
+    "micro-cors": "^0.1.1",
+    "microrouter": "^3.1.3"
+  }
+}
