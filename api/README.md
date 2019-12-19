@@ -54,26 +54,31 @@ middleware
 
 ## EndPoint
 
-| Method |  EndPoint   |        機能         | 認証 |
-| :----: | :---------: | :-----------------: | :--: |
-|  GET   |      /      |   ヘルスチェック    |      |
-|  GET   |  /members   |  メンバー一覧取得   |      |
-|  GET   | /member/:id | id のメンバーを取得 |      |
-|  POST  |   /member   |   メンバーの登録    |  ○   |
-|  GET   |   /events   |  イベント一覧取得   |      |
-|  GET   | /event/:id  | id のイベントを取得 |      |
-|  POST  |   /event    |   イベントの登録    |  ○   |
-|  POST  |  /account   |   アカウント作成    |  ○   |
-|  POST  |   /signin   |     サインイン      |      |
+| Method |   EndPoint    |           機能           | 認証 |
+| :----: | :-----------: | :----------------------: | :--: |
+|  GET   |       /       |      ヘルスチェック      |      |
+|  GET   |   /members    |     メンバー一覧取得     |      |
+|  GET   | /member/s/:id | 学籍番号でメンバーを取得 |      |
+|  GET   |  /member/:id  |   id のメンバーを取得    |      |
+|  POST  |    /member    |      メンバーの登録      |  ○   |
+| PATCH  |  /member/:id  |      メンバーの更新      |  ○   |
+| DELETE |  /member/:id  |      メンバーの削除      |  ○   |
+|  GET   |    /events    |     イベント一覧取得     |      |
+|  GET   |  /event/:id   |   id のイベントを取得    |      |
+|  POST  |    /event     |      イベントの登録      |  ○   |
+|  POST  |   /account    |      アカウント作成      |  ○   |
+|  POST  |    /signin    |        サインイン        |      |
 
 ## Body
 
-### POST /member
+### POST /member, PATCH /member/:id
 
 ```ts
 {
+  studentID: string;
   imageUrl: string;
   name: string;
+  description: string;
   links: {
     hp?: string;
     twitter?: string;
