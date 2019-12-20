@@ -1,7 +1,6 @@
 <template>
   <div class="member-content-wrapper">
     <title-tag :inverse="true">Members</title-tag>
-    <p class="info">Zliのメンバーを紹介します</p>
     <div v-if="isLoading" class="items">
       <font-awesome-icon class="arrow" icon="chevron-left" />
       <member-item :is-loading="true" />
@@ -95,20 +94,13 @@ export default {
   padding: 64px 0;
 }
 
-.info {
-  color: var(--color-white);
-  font-size: 40px;
-  margin: 64px 0;
-  text-align: center;
-}
-
 .items {
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  margin-bottom: 64px;
+  padding: 98px 0;
 }
 
 .arrow {
