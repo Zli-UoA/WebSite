@@ -13,6 +13,7 @@
         :key="item.name"
         :event="item"
         :is-loading="isLoading"
+        @click="() => jumpLink(item.url)"
       />
     </div>
     <div class="more">
@@ -40,6 +41,11 @@ export default {
     isLoading: {
       type: Boolean,
       required: true
+    }
+  },
+  methods: {
+    jumpLink(url) {
+      window.location.href = url;
     }
   }
 };

@@ -16,6 +16,9 @@ export default {
   render(createElement) {
     return this.isLoading
       ? createElement(LoadingEventItem)
-      : createElement(LoadedEventItem, { props: { event: this.event } });
+      : createElement(LoadedEventItem, {
+          props: { event: this.event },
+          on: { click: () => this.$emit("click") }
+        });
   }
 };
