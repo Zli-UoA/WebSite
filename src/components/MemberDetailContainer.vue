@@ -24,9 +24,7 @@ export default {
   async created() {
     try {
       this.member = await API.getMember(this.id);
-      console.log(this.member);
     } catch (e) {
-      console.log("error", e);
       this.$router.replace("/notfound");
     }
   }
