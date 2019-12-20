@@ -9,10 +9,10 @@
       </transition>
       <top-container id="Home" />
       <span ref="anchor" />
-      <about-container id="About" />
-      <member-container id="Member" @loaded="isLoaded.member = true" />
-      <event-container id="Events" @loaded="isLoaded.event = true" />
-      <contact-container id="Contact" />
+      <about-container id="About" class="part" />
+      <member-container id="Member" @loaded="isLoaded.member = true" class="part" />
+      <event-container id="Events" @loaded="isLoaded.event = true" class="part" />
+      <contact-container id="Contact" class="part" />
     </div>
   </div>
 </template>
@@ -63,7 +63,17 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+#Home {
+  position: sticky;
+  top: 0;
+  z-index: -1;
+}
+
+.part {
+  padding-top: 128px;
+}
+
 .init {
   position: absolute;
   top: 0;

@@ -53,6 +53,7 @@ export default {
   flex-direction: column;
   align-items: center;
   padding: 64px 0;
+  background: var(--color-white);
 }
 
 .content {
