@@ -27,21 +27,21 @@
 </template>
 
 <script>
-import TitleTag from './Atom/TitleTag.vue';
-import EventItem from './EventItem';
+import TitleTag from "./Atom/TitleTag.vue";
+import EventItem from "./EventItem";
 
 export default {
   components: { TitleTag, EventItem },
   props: {
     events: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     isLoading: {
       type: Boolean,
-      required: true,
-    },
-  },
+      required: true
+    }
+  }
 };
 </script>
 

@@ -3,22 +3,22 @@
 </template>
 
 <script>
-import EventContent from './EventContent.vue';
-import API from '../api';
+import EventContent from "./EventContent.vue";
+import API from "../api";
 
 export default {
   components: { EventContent },
   data() {
     return {
       events: [],
-      isLoading: true,
+      isLoading: true
     };
   },
   async created() {
     this.events = await API.getEvents();
     this.isLoading = false;
-    this.$emit('loaded');
-  },
+    this.$emit("loaded");
+  }
 };
 </script>
 

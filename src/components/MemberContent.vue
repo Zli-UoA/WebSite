@@ -18,8 +18,8 @@
       />
       <member-item
         v-for="member in showMembers"
-        @click="jumpMemberPage"
-        :key="member.name"
+        @click="() => jumpMemberPage(member.id)"
+        :key="member.id"
         :member="member"
       />
       <font-awesome-icon
@@ -29,28 +29,33 @@
         @click="decriment"
       />
     </div>
+    <div class="more">
+      <router-link to="/members">
+        <font-awesome-icon class="down-icon" :icon="['fas', 'chevron-circle-down']" />メンバーの一覧
+      </router-link>
+    </div>
   </div>
 </template>
 
 <script>
-import TitleTag from './Atom/TitleTag.vue';
-import MemberItem from './MemberItem';
+import TitleTag from "./Atom/TitleTag.vue";
+import MemberItem from "./MemberItem";
 
 export default {
   components: { TitleTag, MemberItem },
   props: {
     members: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     isLoading: {
       type: Boolean,
-      required: true,
-    },
+      required: true
+    }
   },
   data() {
     return {
-      offset: 0,
+      offset: 0
     };
   },
   computed: {
@@ -62,7 +67,7 @@ export default {
       return [...new Array(3)]
         .map((_, i) => (this.offset + i) % this.members.length)
         .map(i => this.members[i]);
-    },
+    }
   },
   methods: {
     incriment() {
@@ -71,10 +76,10 @@ export default {
     decriment() {
       this.offset = (this.offset <= 0 ? this.members.length : this.offset) - 1;
     },
-    jumpMemberPage() {
-      // TODO: route member page
-    },
-  },
+    jumpMemberPage(id) {
+      this.$router.push(`/member/${id}`);
+    }
+  }
 };
 </script>
 
@@ -94,6 +99,7 @@ export default {
   color: var(--color-white);
   font-size: 40px;
   margin: 64px 0;
+  text-align: center;
 }
 
 .items {
@@ -102,6 +108,7 @@ export default {
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
+  margin-bottom: 64px;
 }
 
 .arrow {
@@ -111,5 +118,19 @@ export default {
 
 .arrow:hover {
   opacity: 0.7;
+}
+
+.more {
+  font-size: 16px;
+  color: var(--color-white);
+}
+
+.more a {
+  text-decoration: none;
+  color: var(--color-white);
+}
+
+.more .down-icon {
+  margin-right: 8px;
 }
 </style>
