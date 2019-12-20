@@ -42,9 +42,10 @@ header.header-wrapper {
   width: 100%;
   margin: 0;
   padding: 0 3%;
-  background-color: #000;
+  background-color: var(--color-black-gray);
   box-sizing: border-box;
   z-index: 999;
+  backdrop-filter: blur(10px);
 }
 
 .header-inner {
@@ -72,15 +73,15 @@ header.header-wrapper {
 
 .header-nav__list__items {
   color: var(--color-white);
-  font-size: var(--font-size-large);
-  transform: scale(0.5);
+  font-size: 24px;
 }
 
-.header-nav__list__items:hover {
-  transform: scale(0.8);
-}
 .header-nav__list__items a {
   color: var(--color-white);
   text-decoration: none;
+  transition: 300ms ease;
+}
+.header-nav__list__items a:hover {
+  color: var(--color-warning);
 }
 </style>
