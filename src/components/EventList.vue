@@ -1,15 +1,15 @@
 <template>
-  <div class="member-list-wrapper">
+  <div class="event-list-wrapper">
     <div class="search-box-wrapper">
-      <search-box placeholder="メンバー検索" v-model="searchInput" />
+      <search-box placeholder="イベントを検索" v-model="searchInput" />
     </div>
-    <div class="member-items">
-      <member-item
-        v-for="member in showMembers"
-        :key="member.id"
-        :member="member"
-        class="member-item"
-        @click="() => $router.push(`/member/${member.id}`)"
+    <div class="event-items">
+      <event-item
+        v-for="event in showEvents"
+        :key="event.id"
+        :event="event"
+        class="event-item"
+        @click="() => jumpPage(event.url)"
       />
     </div>
   </div>
@@ -17,12 +17,12 @@
 
 <script>
 import SearchBox from "./SearchBox.vue";
-import MemberItem from "./MemberItem";
+import EventItem from "./EventItem";
 
 export default {
-  components: { SearchBox, MemberItem },
+  components: { SearchBox, EventItem },
   props: {
-    members: {
+    events: {
       type: Array,
       required: true
     }
@@ -33,15 +33,20 @@ export default {
     };
   },
   computed: {
-    showMembers() {
-      return this.members.filter(x => x.name.indexOf(this.searchInput) !== -1);
+    showEvents() {
+      return this.events.filter(x => x.title.indexOf(this.searchInput) !== -1);
+    }
+  },
+  methods: {
+    jumpPage(url) {
+      window.location.href = url;
     }
   }
 };
 </script>
 
 <style scoped>
-.member-list-wrapper {
+.event-list-wrapper {
   width: 100vw;
   display: flex;
   flex-direction: column;
@@ -54,27 +59,27 @@ export default {
   margin-bottom: 92px;
 }
 
-.member-items {
+.event-items {
   display: grid;
 }
 
-.member-item {
+.event-item {
   margin: 0 auto;
 }
 
 @media screen and (min-width: 767px) {
-  .member-list-wrapper {
+  .event-list-wrapper {
     padding: 10vh 10vw;
   }
 
-  .member-items {
+  .event-items {
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 10vh 5vw;
   }
 }
 
 @media screen and (max-width: 767px) {
-  .member-list-wrapper {
+  .event-list-wrapper {
     padding: 10vh 10vw;
   }
 
@@ -84,12 +89,12 @@ export default {
     margin-bottom: 10vh;
   }
 
-  .member-items {
+  .event-items {
     gap: 5vh 10vw;
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   }
 
-  .member-item {
+  .event-item {
     margin: 0 auto;
     width: 160px !important;
     height: 160px !important;

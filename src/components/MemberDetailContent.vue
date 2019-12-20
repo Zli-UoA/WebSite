@@ -56,7 +56,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .member-detail-wrapper {
   height: 100vh;
   display: flex;

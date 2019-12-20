@@ -4,6 +4,7 @@ import VueRouter from "vue-router";
 import Root from "../pages/Root.vue";
 import Members from "../pages/Members.vue";
 import Member from "../pages/Member.vue";
+import Events from "../pages/Events.vue";
 
 Vue.use(VueRouter);
 
@@ -22,11 +23,7 @@ const routes = [
   },
   {
     path: "/events",
-    component: { render: h => h("div", {}, "TODO: events") }
-  },
-  {
-    path: "/event/:id",
-    component: { render: h => h("div", {}, "TODO: event") }
+    component: Events
   },
   {
     path: "*",

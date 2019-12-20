@@ -17,7 +17,7 @@
       />
     </div>
     <div class="more">
-      <router-link to="/">
+      <router-link to="/events">
         <font-awesome-icon
           class="down-icon"
           :icon="['fas', 'chevron-circle-down']"
