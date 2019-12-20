@@ -42,6 +42,7 @@ export default {
   justify-content: center;
   align-items: center;
   padding: 64px 0;
+  background: var(--color-white);
 }
 
 p {
