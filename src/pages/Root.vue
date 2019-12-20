@@ -18,13 +18,13 @@
 </template>
 
 <script>
-import TopContainer from '../components/TopContainer.vue';
-import AboutContainer from '../components/AboutContainer.vue';
-import MemberContainer from '../components/MemberContainer.vue';
-import EventContainer from '../components/EventContainer.vue';
-import ContactContainer from '../components/ContactContainer.vue';
-import HeaderContainer from '../components/HeaderContainer.vue';
-import InitAnimation from '../components/InitAnimation.vue';
+import TopContainer from "../components/TopContainer.vue";
+import AboutContainer from "../components/AboutContainer.vue";
+import MemberContainer from "../components/MemberContainer.vue";
+import EventContainer from "../components/EventContainer.vue";
+import ContactContainer from "../components/ContactContainer.vue";
+import HeaderContainer from "../components/HeaderContainer.vue";
+import InitAnimation from "../components/InitAnimation.vue";
 
 export default {
   components: {
@@ -34,32 +34,32 @@ export default {
     EventContainer,
     ContactContainer,
     HeaderContainer,
-    InitAnimation,
+    InitAnimation
   },
   data() {
     return {
       isLoaded: {
         member: false,
-        event: false,
+        event: false
       },
-      showHeader: false,
+      showHeader: false
     };
   },
   computed: {
     isInitializing() {
       return !Object.values(this.isLoaded).every(x => x);
-    },
+    }
   },
   mounted() {
     const opts = {
       threshold: 0,
-      rootMargin: '-25% 0px 0px 0px',
+      rootMargin: "-25% 0px 0px 0px"
     };
-    const observer = new IntersectionObserver((ev) => {
+    const observer = new IntersectionObserver(ev => {
       this.showHeader = !ev[0].isIntersecting;
     }, opts);
     observer.observe(this.$refs.anchor);
-  },
+  }
 };
 </script>
 
@@ -81,7 +81,6 @@ export default {
   transform: scale3d(2, 2, 2);
   opacity: 0;
 }
-
 
 .header-enter-active,
 .header-leave-active {

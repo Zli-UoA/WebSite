@@ -19,17 +19,17 @@
 </template>
 
 <script>
-import TitleTag from './Atom/TitleTag.vue';
-import AboutItem from './AboutItem.vue';
+import TitleTag from "./Atom/TitleTag.vue";
+import AboutItem from "./AboutItem.vue";
 
 export default {
   components: { TitleTag, AboutItem },
   props: {
     abouts: {
       type: Array,
-      default: () => [],
-    },
-  },
+      default: () => []
+    }
+  }
 };
 </script>
 

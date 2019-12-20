@@ -1,43 +1,43 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
+import Vue from "vue";
+import VueRouter from "vue-router";
 
-import Root from '../pages/Root.vue';
+import Root from "../pages/Root.vue";
+import Members from "../pages/Members.vue";
+import Member from "../pages/Member.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
-    component: Root,
+    path: "/",
+    component: Root
   },
   {
-    path: '/members',
-    component: {
-      render: h => h('div', {}, 'TODO: members'),
-    },
+    path: "/members",
+    component: Members
   },
   {
-    path: '/member/:id',
-    component: { render: h => h('div', {}, 'TODO: member') },
+    path: "/member/:id",
+    component: Member
   },
   {
-    path: '/events',
-    component: { render: h => h('div', {}, 'TODO: events') },
+    path: "/events",
+    component: { render: h => h("div", {}, "TODO: events") }
   },
   {
-    path: '/event/:id',
-    component: { render: h => h('div', {}, 'TODO: event') },
+    path: "/event/:id",
+    component: { render: h => h("div", {}, "TODO: event") }
   },
   {
-    path: '*',
-    component: { render: h => h('div', {}, 'Not Found') },
-  },
+    path: "*",
+    component: { render: h => h("div", {}, "Not Found") }
+  }
 ];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
-  routes,
+  routes
 });
 
 export default router;

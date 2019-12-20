@@ -13,24 +13,24 @@
   </header>
 </template>
 <script>
-import Logo from './Atom/Logo.vue';
+import Logo from "./Atom/Logo.vue";
 
 export default {
   components: { Logo },
   props: {
     size: {
       type: String,
-      required: true,
+      required: true
     },
     color: {
       type: String,
-      required: true,
+      required: true
     },
     navigations: {
       type: Array,
-      required: true,
-    },
-  },
+      required: true
+    }
+  }
 };
 </script>
 <style scoped>

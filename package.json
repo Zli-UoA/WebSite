@@ -34,9 +34,12 @@
     "babel-eslint": "^10.0.1",
     "babel-preset-vue": "^2.0.2",
     "eslint": "^5.16.0",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-vue": "^5.0.0",
     "lint-staged": "^9.4.2",
     "now": "^16.7.0",
+    "prettier": "^1.19.1",
     "vue-template-compiler": "^2.6.10"
   },
   "gitHooks": {
@@ -44,7 +47,7 @@
   },
   "lint-staged": {
     "*.{js,vue}": [
-      "vue-cli-service lint",
+      "vue-cli-service lint --fix",
       "git add"
     ]
   }

@@ -3,39 +3,39 @@
 </template>
 
 <script>
-import HeaderContent from './HeaderContent.vue';
+import HeaderContent from "./HeaderContent.vue";
 
 export default {
   components: {
-    HeaderContent,
+    HeaderContent
   },
   data() {
     return {
-      logoSize: 'small',
-      logoColor: 'gray',
+      logoSize: "small",
+      logoColor: "gray",
       navigations: [
         {
           id: 1,
-          name: 'Home',
+          name: "Home"
         },
         {
           id: 2,
-          name: 'About',
+          name: "About"
         },
         {
           id: 3,
-          name: 'Member',
+          name: "Member"
         },
         {
           id: 4,
-          name: 'Events',
+          name: "Events"
         },
         {
           id: 5,
-          name: 'Contact',
-        },
-      ],
+          name: "Contact"
+        }
+      ]
     };
-  },
+  }
 };
 </script>

@@ -8,17 +8,17 @@
 </template>
 
 <script>
-import TitleTag from './Atom/TitleTag.vue';
-import GoogleForm from './GoogleForm.vue';
+import TitleTag from "./Atom/TitleTag.vue";
+import GoogleForm from "./GoogleForm.vue";
 
 export default {
   components: { GoogleForm, TitleTag },
   props: {
     formUrl: {
       type: String,
-      required: true,
-    },
-  },
+      required: true
+    }
+  }
 };
 </script>
 
