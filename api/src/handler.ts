@@ -1,6 +1,6 @@
 import { AugmentedRequestHandler, ServerResponse } from 'microrouter';
 import { json, send } from 'micro';
-import { member, event, eventEncoder, Role } from './model';
+import { member, event, eventEncoder, Role, withID, Member as M } from './model';
 import { Repository, Member, Event, Account } from './Repository';
 import { isDecoderError } from '@mojotech/json-type-validation';
 import faunadb from 'faunadb';
@@ -20,7 +20,7 @@ const errorHandle = (res: ServerResponse, e: Error) => {
 };
 
 export namespace Handler {
-  export const createMember: WithRepository<Member.Repository> = (repo) => async (req, res) => {
+  export const createMember: WithRepository<Member.Repository> = repo => async (req, res) => {
     const value = await json(req);
 
     try {
@@ -33,7 +33,7 @@ export namespace Handler {
     }
   };
 
-  export const getMember: WithRepository<Member.Repository> = (repo) => async (req, res) => {
+  export const getMember: WithRepository<Member.Repository> = repo => async (req, res) => {
     const id = req.params.id;
 
     try {
@@ -45,7 +45,7 @@ export namespace Handler {
     }
   };
 
-  export const getMembers: WithRepository<Member.Repository> = (repo) => async (_, res) => {
+  export const getMembers: WithRepository<Member.Repository> = repo => async (_, res) => {
     try {
       const members = await repo.getAll();
       send(res, 200, members);
@@ -55,7 +55,49 @@ export namespace Handler {
     }
   };
 
-  export const createEvent: WithRepository<Event.Repository> = (repo) => async (req, res) => {
+  export const getMemberByStudentID: WithRepository<Member.Repository> = repo => async (
+    req,
+    res
+  ) => {
+    const id = req.params.id;
+    console.log(id);
+
+    try {
+      const member = await repo.getWithStudentID(`s${id}`);
+      send(res, 200, member);
+    } catch (e) {
+      console.error(e);
+      errorHandle(res, e);
+    }
+  };
+
+  export const updateMember: WithRepository<Member.Repository> = repo => async (req, res) => {
+    const body = await json(req);
+    const id = req.params.id;
+
+    try {
+      const memberData = await member.runPromise(body);
+      await repo.update(withID<M>(id)(memberData));
+      send(res, 200, { message: 'success' });
+    } catch (e) {
+      console.error(e);
+      errorHandle(res, e);
+    }
+  };
+
+  export const deleteMember: WithRepository<Member.Repository> = repo => async (req, res) => {
+    const id = req.params.id;
+
+    try {
+      await repo.delete(id);
+      send(res, 200, { message: 'success' });
+    } catch (e) {
+      console.error(e);
+      errorHandle(res, e);
+    }
+  };
+
+  export const createEvent: WithRepository<Event.Repository> = repo => async (req, res) => {
     const value = await json(req);
 
     try {
@@ -69,7 +111,7 @@ export namespace Handler {
     }
   };
 
-  export const getEvent: WithRepository<Event.Repository> = (repo) => async (req, res) => {
+  export const getEvent: WithRepository<Event.Repository> = repo => async (req, res) => {
     const id = req.params.id;
 
     try {
@@ -81,7 +123,7 @@ export namespace Handler {
     }
   };
 
-  export const getEvents: WithRepository<Event.Repository> = (repo) => async (_, res) => {
+  export const getEvents: WithRepository<Event.Repository> = repo => async (_, res) => {
     try {
       const events = await repo.getAll();
       send(res, 200, events.map(eventEncoder));
@@ -91,9 +133,10 @@ export namespace Handler {
     }
   };
 
-  export const createAccount: WithRepository<Account.Repository, WithAuthorizer> = (repo) => (
-    authorizer
-  ) => async (req, res) => {
+  export const createAccount: WithRepository<
+    Account.Repository,
+    WithAuthorizer
+  > = repo => authorizer => async (req, res) => {
     const body = await json(req);
 
     try {
@@ -111,9 +154,10 @@ export namespace Handler {
     }
   };
 
-  export const signin: WithRepository<Account.Repository, WithAuthorizer> = (repo) => (
-    authorizer
-  ) => async (req, res) => {
+  export const signin: WithRepository<
+    Account.Repository,
+    WithAuthorizer
+  > = repo => authorizer => async (req, res) => {
     const body = await json(req);
 
     try {
