@@ -24,7 +24,9 @@ const memberEndPoint = router(
 const eventEndPoint = router(
   get('/event/:id', Handler.getEvent(eventRepo)),
   get('/events', Handler.getEvents(eventRepo)),
-  post('/event', verifying(authorizer)(Handler.createEvent(eventRepo)))
+  post('/event', verifying(authorizer)(Handler.createEvent(eventRepo))),
+  patch('/event/:id', verifying(authorizer)(Handler.updateEvent(eventRepo))),
+  del('/event/:id', verifying(authorizer)(Handler.deleteEvent(eventRepo)))
 );
 
 const app = router(

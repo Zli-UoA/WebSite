@@ -1,6 +1,6 @@
 import { AugmentedRequestHandler, ServerResponse } from 'microrouter';
 import { json, send } from 'micro';
-import { member, event, eventEncoder, Role, withID, Member as M } from './model';
+import { member, event, eventEncoder, Role, withID, Member as M, Event as E } from './model';
 import { Repository, Member, Event, Account } from './Repository';
 import { isDecoderError } from '@mojotech/json-type-validation';
 import faunadb from 'faunadb';
@@ -127,6 +127,34 @@ export namespace Handler {
     try {
       const events = await repo.getAll();
       send(res, 200, events.map(eventEncoder));
+    } catch (e) {
+      console.error(e);
+      errorHandle(res, e);
+    }
+  };
+
+  export const updateEvent: WithRepository<Event.Repository> = repo => async (req, res) => {
+    try {
+      const body = await json(req);
+      const id = req.params.id;
+      const eventData = await event.runPromise(body);
+
+      await repo.update(withID<E>(id)(eventData));
+
+      send(res, 200, { message: 'success' });
+    } catch (e) {
+      console.error(e);
+      errorHandle(res, e);
+    }
+  };
+
+  export const deleteEvent: WithRepository<Event.Repository> = repo => async (req, res) => {
+    try {
+      const id = req.params.id;
+
+      await repo.delete(id);
+
+      send(res, 200, { message: 'success' });
     } catch (e) {
       console.error(e);
       errorHandle(res, e);
