@@ -11,8 +11,10 @@ export interface Account {
 }
 
 export interface Member {
+  studentID: string;
   imageUrl: string;
   name: string;
+  description: string;
   links: {
     hp?: string;
     twitter?: string;
@@ -48,8 +50,10 @@ export const account = object({
 });
 
 export const member = object({
+  studentID: string(),
   imageUrl: string(),
   name: string(),
+  description: string(),
   links: object({
     hp: optional(string()),
     twitter: optional(string()),
