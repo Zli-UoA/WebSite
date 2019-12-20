@@ -7,6 +7,8 @@ import EventContent from '../components/EventContent.vue';
 import InitAnimation from '../components/InitAnimation.vue';
 import AboutContent from '../components/AboutContent.vue';
 import ContactContent from '../components/ContactContent.vue';
+import MemberListContent from '../components/MemberListContent.vue';
+import MemberDetailContent from '../components/MemberDetailContent.vue';
 
 storiesOf('Contents', module)
   .addDecorator(withKnobs)
@@ -153,4 +155,98 @@ storiesOf('Contents', module)
     template: `
       <init-animation />
       `,
+  }))
+  .add('MemberListContent', () => ({
+    components: { MemberListContent },
+    data() {
+      return {
+        members: [
+          {
+            id: '252146128270656009',
+            studentID: '252146128270656009',
+            imageUrl: 'https://drive.google.com/uc?id=1q-kcTvGf5YpGVk3xycjGErJZK2ou5Y6N',
+            name: 'じぶりん',
+            description: '',
+            links: {
+              hp: 'https://gpioblink.hatenablog.com/',
+              twitter: 'https://twitter.com/gpioblink',
+              github: 'https://github.com/gpioblink',
+            },
+          },
+          {
+            id: '252153879781704201',
+            studentID: '252153879781704201',
+            imageUrl: 'https://drive.google.com/uc?id=1MSR260GDjkBGhPXVe5FQctb_aCO9f1YJ',
+            name: '久保大輔',
+            description: '',
+            links: {
+              hp: '',
+              twitter: 'https://twitter.com/qub_o',
+              github: 'https://github.com/kusaoisii',
+            },
+          },
+          {
+            id: '252188211209568778',
+            studentID: 's1260249',
+            imageUrl: 'https://drive.google.com/uc?id=1OLDVhtDjXSjgz4GVCm_6FjVglp7JAf8H',
+            name: 'justym',
+            description: 'Gopherになりたい学生',
+            links: {
+              hp: '',
+              twitter: 'https://twitter.com/morishy2',
+              github: 'https://github.com/justym',
+            },
+          },
+          {
+            id: '252188655449276938',
+            studentID: 's1260119',
+            imageUrl: 'https://drive.google.com/uc?id=15VVw8KfyvglNJu-OYoyErlvNgQSxSohN',
+            name: 'マヤミト',
+            description: 'Kotlinが大好きなAndroidエンジニアです。たまにバックエンドもやります。',
+            links: {
+              hp: 'https://yt8492.hatenablog.com/',
+              twitter: 'https://twitter.com/yt8492',
+              github: 'https://github.com/yt8492',
+            },
+          },
+          {
+            id: '252195711094882826',
+            studentID: 's1250087',
+            imageUrl: 'https://drive.google.com/uc?id=1nm_haNk0EtPPMjq3MAOu1iXYEb8wIofp',
+            name: 'うじまる',
+            description: 'ElmとTypeScriptが好きです',
+            links: {
+              hp: 'https://uzimaru.com',
+              twitter: 'https://twitter.com/uzimaru0000',
+              github: 'https://github.com/uzimaru0000',
+            },
+          },
+        ],
+      };
+    },
+    template: `
+      <member-list-content :members="members" />
+    `,
+  }))
+  .add('MemberDetailContent', () => ({
+    components: { MemberDetailContent },
+    data() {
+      return {
+        member: {
+          id: '252188655449276938',
+          studentID: 's1260119',
+          imageUrl: 'https://drive.google.com/uc?id=15VVw8KfyvglNJu-OYoyErlvNgQSxSohN',
+          name: 'マヤミト',
+          description: 'Kotlinが大好きなAndroidエンジニアです。たまにバックエンドもやります。',
+          links: {
+            hp: 'https://yt8492.hatenablog.com/',
+            twitter: 'https://twitter.com/yt8492',
+            github: 'https://github.com/yt8492',
+          },
+        },
+      };
+    },
+    template: `
+      <member-detail-content :member="member" />
+    `,
   }));
