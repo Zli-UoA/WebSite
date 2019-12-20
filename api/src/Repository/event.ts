@@ -7,6 +7,8 @@ export interface Repository {
   create: (event: Event) => Promise<string>;
   get: (id: string) => Promise<WithID<Event>>;
   getAll: () => Promise<Array<WithID<Event>>>;
+  update: (event: WithID<Event>) => Promise<void>;
+  delete: (id: string) => Promise<void>;
 }
 
 export class FaunaRepository implements Repository {
@@ -42,5 +44,17 @@ export class FaunaRepository implements Repository {
       .query(q.Map(q.Paginate(q.Match(q.Index('all_event'))), q.Lambda('x', q.Get(q.Var('x')))))
       .then(x => (x as any).data)
       .then(array(this.eventWithID).runPromise);
+  }
+
+  update({ id, ...event }: WithID<Event>) {
+    return this.client.query<void>(
+      q.Update(q.Ref(q.Collection('Event'), id), {
+        data: event,
+      })
+    );
+  }
+
+  delete(id: string) {
+    return this.client.query<void>(q.Delete(q.Ref(q.Collection('Event'), id)));
   }
 }

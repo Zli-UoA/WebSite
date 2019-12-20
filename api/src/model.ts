@@ -34,11 +34,12 @@ export interface Event {
   genre: string;
   tags: string[];
   comment: string;
+  url: string;
 }
 
 export const account = object({
   id: string(),
-  role: string().andThen((x) => {
+  role: string().andThen(x => {
     switch (x) {
       case 'Admin':
         return succeed(x);
@@ -65,14 +66,15 @@ export const event = object({
   image: string(),
   title: string(),
   organizer: string(),
-  date: number().map((n) => new Date(n)),
+  date: number().map(n => new Date(n)),
   time: object({
-    from: number().map((n) => new Date(n)),
-    to: number().map((n) => new Date(n)),
+    from: number().map(n => new Date(n)),
+    to: number().map(n => new Date(n)),
   }),
   genre: string(),
   tags: array(string()),
   comment: string(),
+  url: string(),
 });
 
 export const eventEncoder = (event: Event) => ({

@@ -66,6 +66,8 @@ middleware
 |  GET   |    /events    |     イベント一覧取得     |      |
 |  GET   |  /event/:id   |   id のイベントを取得    |      |
 |  POST  |    /event     |      イベントの登録      |  ○   |
+| PATCH  |  /event/:id   |      イベントの更新      |  ○   |
+| DELETE |  /event/:id   |      イベントの削除      |  ○   |
 |  POST  |   /account    |      アカウント作成      |  ○   |
 |  POST  |    /signin    |        サインイン        |      |
 
@@ -87,7 +89,7 @@ middleware
 }
 ```
 
-### POST /event
+### POST /event, PATCH /event/:id
 
 ```ts
 {
