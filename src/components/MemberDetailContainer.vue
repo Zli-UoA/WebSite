@@ -22,7 +22,13 @@ export default {
     };
   },
   async created() {
-    this.member = await API.getMember(this.id);
+    try {
+      this.member = await API.getMember(this.id);
+      console.log(this.member);
+    } catch (e) {
+      console.log("error", e);
+      this.$router.replace("/notfound");
+    }
   }
 };
 </script>

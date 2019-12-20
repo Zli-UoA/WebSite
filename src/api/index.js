@@ -2,19 +2,37 @@ const baseURL = "https://api.zli.now.sh";
 
 const getMembers = async () => {
   const url = `${baseURL}/members`;
-  const members = await fetch(url).then(x => x.json());
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error(response.statusText);
+  }
+
+  const members = await response.json();
   return members;
 };
 
 const getMember = async id => {
   const url = `${baseURL}/member/${id}`;
-  const member = await fetch(url).then(x => x.json());
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error(response.statusText);
+  }
+
+  const member = await response.json();
   return member;
 };
 
 const getEvents = async () => {
   const url = `${baseURL}/events`;
-  const events = await fetch(url).then(x => x.json());
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error(response.statusText);
+  }
+
+  const events = await response.json();
   return events.map(event => ({
     ...event,
     date: new Date(event.date),
