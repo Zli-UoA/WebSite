@@ -15,17 +15,17 @@ export default {
   props: {
     formUrl: {
       type: String,
-      required: true,
+      required: true
     },
     width: {
       type: Number,
-      default: 640,
+      default: 640
     },
     height: {
       type: Number,
-      default: 655,
-    },
-  },
+      default: 655
+    }
+  }
 };
 </script>
 

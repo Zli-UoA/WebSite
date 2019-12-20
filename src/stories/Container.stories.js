@@ -1,23 +1,23 @@
-import { withKnobs } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/vue';
+import { withKnobs } from "@storybook/addon-knobs";
+import { storiesOf } from "@storybook/vue";
 
-import MemberContainer from '../components/MemberContainer.vue';
-import EventContainer from '../components/EventContainer.vue';
-import HeaderContainer from '../components/HeaderContainer.vue';
+import MemberContainer from "../components/MemberContainer.vue";
+import EventContainer from "../components/EventContainer.vue";
+import HeaderContainer from "../components/HeaderContainer.vue";
 
-storiesOf('Container', module)
+storiesOf("Container", module)
   .addDecorator(withKnobs)
-  .add('Member', () => ({
+  .add("Member", () => ({
     components: { MemberContainer },
-    template: '<member-container />',
+    template: "<member-container />"
   }))
-  .add('Event', () => ({
+  .add("Event", () => ({
     components: { EventContainer },
-    template: '<event-container />',
+    template: "<event-container />"
   }))
-  .add('HeaderContainer', () => ({
+  .add("HeaderContainer", () => ({
     components: { HeaderContainer },
     template: `
       <HeaderContainer />
-    `,
+    `
   }));

@@ -1,21 +1,24 @@
-import LoadedMemberItem from './LoadedMemberItem.vue';
-import LoadingMemberItem from './LoadingMemberItem.vue';
+import LoadedMemberItem from "./LoadedMemberItem.vue";
+import LoadingMemberItem from "./LoadingMemberItem.vue";
 
 export default {
   components: { LoadedMemberItem, LoadingMemberItem },
   props: {
     isLoading: {
       type: Boolean,
-      default: false,
+      default: false
     },
     member: {
       type: Object,
-      default: null,
-    },
+      default: null
+    }
   },
   render(createElement) {
     return this.isLoading
       ? createElement(LoadingMemberItem)
-      : createElement(LoadedMemberItem, { props: { member: this.member } });
-  },
+      : createElement(LoadedMemberItem, {
+          props: { member: this.member },
+          on: { click: () => this.$emit("click") }
+        });
+  }
 };
