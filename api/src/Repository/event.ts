@@ -1,7 +1,7 @@
-import faunadb, { query as q } from 'faunadb';
-import { Event, event, withID, WithID, eventEncoder } from '../model';
-import { FaunaResponseDecoder } from '../utils';
-import { array } from '@mojotech/json-type-validation';
+import faunadb, { query as q } from "faunadb";
+import { Event, event, withID, WithID, eventEncoder } from "../model";
+import { FaunaResponseDecoder } from "../utils";
+import { array } from "@mojotech/json-type-validation";
 
 export interface Repository {
   create: (event: Event) => Promise<string>;
@@ -25,8 +25,8 @@ export class FaunaRepository implements Repository {
   create(event: Event) {
     return this.client
       .query(
-        q.Create(q.Collection('Event'), {
-          data: eventEncoder(event),
+        q.Create(q.Collection("Event"), {
+          data: eventEncoder(event)
         })
       )
       .then(this.eventWithID.runPromise)
@@ -35,26 +35,31 @@ export class FaunaRepository implements Repository {
 
   get(id: string) {
     return this.client
-      .query(q.Get(q.Ref(q.Collection('Event'), id)))
+      .query(q.Get(q.Ref(q.Collection("Event"), id)))
       .then(this.eventWithID.runPromise);
   }
 
   getAll() {
     return this.client
-      .query(q.Map(q.Paginate(q.Match(q.Index('all_event'))), q.Lambda('x', q.Get(q.Var('x')))))
+      .query(
+        q.Map(
+          q.Paginate(q.Match(q.Index("events_sort_by_date_in_reverse"))),
+          q.Lambda(["_", "ref"], q.Get(q.Var("ref")))
+        )
+      )
       .then(x => (x as any).data)
       .then(array(this.eventWithID).runPromise);
   }
 
   update({ id, ...event }: WithID<Event>) {
     return this.client.query<void>(
-      q.Update(q.Ref(q.Collection('Event'), id), {
-        data: event,
+      q.Update(q.Ref(q.Collection("Event"), id), {
+        data: event
       })
     );
   }
 
   delete(id: string) {
-    return this.client.query<void>(q.Delete(q.Ref(q.Collection('Event'), id)));
+    return this.client.query<void>(q.Delete(q.Ref(q.Collection("Event"), id)));
   }
 }
