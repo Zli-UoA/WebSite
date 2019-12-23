@@ -2,14 +2,26 @@
   "version": 2,
   "builds": [
     {
-      "src": "./**",
+      "src": "/**",
       "use": "@now/static"
     }
   ],
   "routes": [
     {
+      "src": "/js/(.*)",
+      "dest": "/js/$1"
+    },
+    {
+      "src": "/css/(.*)",
+      "dest": "/css/$1"
+    },
+    {
+      "src": "/img/(.*)",
+      "dest": "/img/$1"
+    },
+    {
       "src": "/(.*)",
-      "dest": "./index.html"
+      "dest": "/index.html"
     }
   ]
 }
