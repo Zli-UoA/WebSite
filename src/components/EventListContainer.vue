@@ -3,18 +3,17 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import EventList from "./EventList.vue";
-import API from "../api";
+import { getEvents } from "../store";
 
 export default {
   components: { EventList },
-  data() {
-    return {
-      events: []
-    };
+  computed: {
+    ...mapGetters(["events"])
   },
-  async created() {
-    this.events = await API.getEvents();
+  created() {
+    this.$store.dispatch(getEvents());
   }
 };
 </script>

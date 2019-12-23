@@ -3,19 +3,22 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import EventContent from "./EventContent.vue";
-import API from "../api";
+import { getEvents } from "../store";
 
 export default {
   components: { EventContent },
   data() {
     return {
-      events: [],
       isLoading: true
     };
   },
+  computed: {
+    ...mapGetters(["events"])
+  },
   async created() {
-    this.events = await API.getEvents();
+    this.$store.dispatch(getEvents());
     this.isLoading = false;
     this.$emit("loaded");
   }

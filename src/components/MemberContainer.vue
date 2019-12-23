@@ -3,19 +3,22 @@
 </template>
 
 <script>
-import API from "../api";
+import { mapGetters } from "vuex";
 import MemberContent from "./MemberContent.vue";
+import { getMembers } from "../store";
 
 export default {
   components: { MemberContent },
   data() {
     return {
-      members: [],
       isLoading: true
     };
   },
+  computed: {
+    ...mapGetters(["members"])
+  },
   async created() {
-    this.members = await API.getMembers();
+    this.$store.dispatch(getMembers());
     this.isLoading = false;
     this.$emit("loaded");
   }

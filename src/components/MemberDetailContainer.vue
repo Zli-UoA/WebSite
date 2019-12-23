@@ -6,7 +6,7 @@
 
 <script>
 import MemberDetailContent from "./MemberDetailContent.vue";
-import API from "../api";
+import { getMember } from "../store";
 
 export default {
   components: { MemberDetailContent },
@@ -22,10 +22,12 @@ export default {
     };
   },
   async created() {
-    try {
-      this.member = await API.getMember(this.id);
-    } catch (e) {
-      this.$router.replace("/notfound");
+    if (this.$store.getters.memberById(this.id) === undefined) {
+      this.$store.dispatch(
+        getMember({ id: this.id, onErr: () => this.$router.replace("/notfound") })
+      );
+    } else {
+      this.member = this.$store.getters.memberById(this.id);
     }
   }
 };
