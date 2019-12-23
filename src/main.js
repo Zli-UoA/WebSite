@@ -3,7 +3,8 @@ import {
   faGlobe,
   faChevronCircleDown,
   faChevronLeft,
-  faChevronRight
+  faChevronRight,
+  faSearch
 } from "@fortawesome/free-solid-svg-icons";
 import { faTwitter, faGithub } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
@@ -14,7 +15,15 @@ import router from "./router";
 import store from "./store";
 import "./style/constant.css";
 
-library.add(faGlobe, faTwitter, faGithub, faChevronCircleDown, faChevronRight, faChevronLeft);
+library.add(
+  faGlobe,
+  faTwitter,
+  faGithub,
+  faChevronCircleDown,
+  faChevronRight,
+  faChevronLeft,
+  faSearch
+);
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 
 Vue.config.productionTip = false;
