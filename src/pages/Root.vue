@@ -1,19 +1,14 @@
 <template>
   <div>
-    <transition name="init" v-if="isInitializing">
-      <init-animation class="init" />
+    <transition name="header">
+      <header-container v-show="showHeader" />
     </transition>
-    <div v-show="!isInitializing">
-      <transition name="header">
-        <header-container v-show="showHeader" />
-      </transition>
-      <top-container id="Home" />
-      <span ref="anchor" />
-      <about-container id="About" class="part" />
-      <member-container id="Member" @loaded="isLoaded.member = true" class="part" />
-      <event-container id="Events" @loaded="isLoaded.event = true" class="part" />
-      <contact-container id="Contact" class="part" />
-    </div>
+    <top-container id="Home" />
+    <span ref="anchor" />
+    <about-container id="About" class="part" />
+    <member-container id="Member" class="part" />
+    <event-container id="Events" class="part" />
+    <contact-container id="Contact" class="part" />
   </div>
 </template>
 
@@ -24,7 +19,6 @@ import MemberContainer from "../components/MemberContainer.vue";
 import EventContainer from "../components/EventContainer.vue";
 import ContactContainer from "../components/ContactContainer.vue";
 import HeaderContainer from "../components/HeaderContainer.vue";
-import InitAnimation from "../components/InitAnimation.vue";
 
 export default {
   components: {
@@ -33,22 +27,12 @@ export default {
     MemberContainer,
     EventContainer,
     ContactContainer,
-    HeaderContainer,
-    InitAnimation
+    HeaderContainer
   },
   data() {
     return {
-      isLoaded: {
-        member: false,
-        event: false
-      },
       showHeader: false
     };
-  },
-  computed: {
-    isInitializing() {
-      return !Object.values(this.isLoaded).every(x => x);
-    }
   },
   mounted() {
     const opts = {
@@ -72,24 +56,6 @@ export default {
 
 .part {
   padding-top: 128px;
-}
-
-.init {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 100;
-}
-
-.init-enter-active,
-.init-leave-active {
-  transition: 1000ms ease;
-}
-
-.init-enter,
-.init-leave-to {
-  transform: scale3d(2, 2, 2);
-  opacity: 0;
 }
 
 .header-enter-active,
