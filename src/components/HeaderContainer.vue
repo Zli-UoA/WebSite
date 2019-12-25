@@ -1,12 +1,20 @@
 <template>
-  <HeaderContent :size="logoSize" :color="logoColor" :navigations="navigations" />
+  <header-mobile-content
+    v-if="isMobileSize"
+    :size="logoSize"
+    :color="logoColor"
+    :navigations="navigations"
+  />
+  <header-content v-else :size="logoSize" :color="logoColor" :navigations="navigations" />
 </template>
 
 <script>
 import HeaderContent from "./HeaderContent.vue";
+import HeaderMobileContent from "./HeaderMobileContent.vue";
 
 export default {
   components: {
+    HeaderMobileContent,
     HeaderContent
   },
   data() {
@@ -34,8 +42,13 @@ export default {
           id: 5,
           name: "Contact"
         }
-      ]
+      ],
+      isMobileSize: false
     };
+  },
+  mounted() {
+    console.log(window.innerWidth);
+    this.isMobileSize = window.innerWidth <= 600;
   }
 };
 </script>
