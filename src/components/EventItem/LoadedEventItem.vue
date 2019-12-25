@@ -1,6 +1,13 @@
 <template>
   <div class="wrapper" @click="() => $emit('click')">
-    <basic-image class="image" :src="event.image" width="348px" height="230px"></basic-image>
+    <basic-image
+      class="image"
+      :src="event.image"
+      width="348px"
+      height="230px"
+      :overlay="isLoading && 'rgba(0, 0, 0, 0.3)'"
+      @load="() => (isLoading = false)"
+    />
     <div class="content">
       <span class="date">{{ date }}</span>
       <span class="title">{{ event.title }}</span>
@@ -18,6 +25,11 @@ export default {
   components: { BasicImage },
   props: {
     event: Object
+  },
+  data() {
+    return {
+      isLoading: true
+    };
   },
   computed: {
     date() {
