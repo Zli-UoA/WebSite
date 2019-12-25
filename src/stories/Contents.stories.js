@@ -9,6 +9,8 @@ import AboutContent from "../components/AboutContent.vue";
 import ContactContent from "../components/ContactContent.vue";
 import MemberListContent from "../components/MemberListContent.vue";
 import MemberDetailContent from "../components/MemberDetailContent.vue";
+import HeaderMobileContent from "../components/HeaderMobileContent.vue";
+import HeaderContent from "../components/HeaderContent.vue";
 
 storiesOf("Contents", module)
   .addDecorator(withKnobs)
@@ -248,5 +250,73 @@ storiesOf("Contents", module)
     },
     template: `
       <member-detail-content :member="member" />
+    `
+  }))
+  .add("HeaderContent", () => ({
+    comments: { HeaderContent },
+    data() {
+      return {
+        logoSize: "small",
+        logoColor: "gray",
+        navigations: [
+          {
+            id: 1,
+            name: "Home"
+          },
+          {
+            id: 2,
+            name: "About"
+          },
+          {
+            id: 3,
+            name: "Member"
+          },
+          {
+            id: 4,
+            name: "Events"
+          },
+          {
+            id: 5,
+            name: "Contact"
+          }
+        ]
+      };
+    },
+    template: `
+      <header-content :size="logoSize" :color="logoColor" :navigations="navigations"/>
+    `
+  }))
+  .add("HeaderMobileContent", () => ({
+    comments: { HeaderMobileContent },
+    data() {
+      return {
+        logoSize: "small",
+        logoColor: "gray",
+        navigations: [
+          {
+            id: 1,
+            name: "Home"
+          },
+          {
+            id: 2,
+            name: "About"
+          },
+          {
+            id: 3,
+            name: "Member"
+          },
+          {
+            id: 4,
+            name: "Events"
+          },
+          {
+            id: 5,
+            name: "Contact"
+          }
+        ]
+      };
+    },
+    template: `
+      <header-mobile-content :size="logoSize" :color="logoColor" :navigations="navigations"/> 
     `
   }));
