@@ -184,35 +184,4 @@ header.header-wrapper {
 .nav-leave-active {
   transition: 0.15s;
 }
-
-/*
-.header-nav {
-  width: 90vw;
-  margin-left: 100px;
-}
-
-
-.header-nav__list {
-  margin: 0;
-  padding: 0;
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  list-style: none;
-}
-
-.header-nav__list__items {
-  color: var(--color-white);
-  font-size: 24px;
-}
-
-.header-nav__list__items a {
-  color: var(--color-white);
-  text-decoration: none;
-  transition: 300ms ease;
-}
-.header-nav__list__items a:hover {
-  color: var(--color-warning);
-}
-*/
 </style>
