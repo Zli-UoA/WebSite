@@ -47,7 +47,6 @@ export default {
     };
   },
   mounted() {
-    console.log(window.innerWidth);
     this.isMobileSize = window.innerWidth <= 600;
   }
 };
