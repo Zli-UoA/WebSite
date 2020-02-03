@@ -1,4 +1,4 @@
-const baseURL = "https://api.zli.now.sh";
+const baseURL = "/api";
 
 const getMembers = async () => {
   const url = `${baseURL}/members`;

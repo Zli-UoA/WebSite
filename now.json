@@ -1,27 +1,57 @@
 {
   "version": 2,
+  "name": "zli-web",
   "builds": [
     {
-      "src": "/**",
+      "src": "dist/**",
       "use": "@now/static"
+    },
+    {
+      "src": "storybook-static/**",
+      "use": "@now/static"
+    },
+    {
+      "src": "api/dist/main.js",
+      "use": "@now/node"
     }
   ],
   "routes": [
     {
+      "src": "/api/(.*)",
+      "dest": "api/dist/main.js"
+    },
+    {
       "src": "/js/(.*)",
-      "dest": "/js/$1"
+      "dest": "dist/js/$1"
     },
     {
       "src": "/css/(.*)",
-      "dest": "/css/$1"
+      "dest": "dist/css/$1"
     },
     {
       "src": "/img/(.*)",
-      "dest": "/img/$1"
+      "dest": "dist/img/$1"
+    },
+    {
+      "src": "/storybook",
+      "dest": "storybook-static/index.html"
+    },
+    {
+      "src": "^/(.*).js",
+      "dest": "storybook-static/$1.js"
+    },
+    {
+      "src": "/iframe.html",
+      "dest": "storybook-static/iframe.html"
     },
     {
       "src": "/(.*)",
-      "dest": "/index.html"
+      "dest": "dist/index.html"
     }
-  ]
+  ],
+  "env": {
+    "FAUNA_SECRET_KEY": "@fauna-secret-key",
+    "SALT": "@password-salt",
+    "TOKEN_SECRET": "@token-secret"
+  }
 }
