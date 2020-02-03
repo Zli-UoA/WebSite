@@ -49,7 +49,7 @@ jobs:
       - name: Upload building result
         uses: actions/upload-artifact@v1
         with:
-          name: build_data/api
+          name: build_data-api
           path: api/dist
 
   build_storybook:
@@ -75,7 +75,7 @@ jobs:
       - name: Upload building result
         uses: actions/upload-artifact@v1
         with:
-          name: build_data/storybook
+          name: build_data-storybook
           path: storybook-static
 
   build_frontend:
@@ -101,7 +101,7 @@ jobs:
       - name: Upload building result
         uses: actions/upload-artifact@v1
         with:
-          name: build_data/frontend
+          name: build_data-frontend
           path: dist
 
   deploy:
@@ -110,19 +110,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: Download building result
+
+      - name: Download building result for api
         uses: actions/download-artifact@v1
         with:
-          name: build_data
-
+          name: build_data-api
       - name: Move file for api server
-        run: mv ./build_data/api/dist ./api/
+        run: mv ./build_data-api/dist ./api/
 
+      - name: Download building result for storybook
+        uses: actions/download-artifact@v1
+        with:
+          name: build_data-storybook
       - name: Move file for storybook
-        run: mv ./build_data/storybook/storybook-static ./
+        run: mv ./build_data-storybook/storybook-static ./
 
+      - name: Download building result for frontend
+        uses: actions/download-artifact@v1
+        with:
+          name: build_data-frontend
       - name: Move file for frontend
-        run: mv ./build_data/frontend/dist ./
+        run: mv ./build_data-frontend/dist ./
 
       - name: Deploy to now.sh
         env:
