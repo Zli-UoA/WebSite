@@ -7,6 +7,7 @@ URL=$(now deploy \
   --token=${ZEIT_TOKEN} \
   --scope zli \
   --local-config=./now.json \
+  --confirm \
   $1)
 
 now alias --local-config=./now.json --token=${ZEIT_TOKEN} ${URL} $2
