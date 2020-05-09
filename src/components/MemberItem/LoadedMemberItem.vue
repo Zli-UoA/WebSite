@@ -1,6 +1,13 @@
 <template>
   <div class="wrapper" @click="() => $emit('click')">
-    <basic-image width="100%" height="100%" :src="member.imageUrl" :round="true" />
+    <basic-image
+      width="100%"
+      height="100%"
+      :src="member.imageUrl"
+      :round="true"
+      :overlay="isLoading && 'rgba(0, 0, 0, 0.3)'"
+      @load="() => (isLoading = false)"
+    />
     <div class="content">
       <div class="name">{{ member.name }}</div>
       <div class="icons">
@@ -42,6 +49,11 @@ export default {
         .map(x => [linkToIcon(x), this.member.links[x]])
         .filter(tuple => tuple[1] !== "");
     }
+  },
+  data() {
+    return {
+      isLoading: true
+    };
   }
 };
 </script>

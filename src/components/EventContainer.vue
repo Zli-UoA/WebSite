@@ -1,5 +1,5 @@
 <template>
-  <event-content :events="events" :is-loading="isLoading" />
+  <event-content :events="events" :is-loading="events.lenght === 0" />
 </template>
 
 <script>
@@ -9,18 +9,11 @@ import { getEvents } from "../store";
 
 export default {
   components: { EventContent },
-  data() {
-    return {
-      isLoading: true
-    };
-  },
   computed: {
     ...mapGetters(["events"])
   },
   async created() {
     this.$store.dispatch(getEvents());
-    this.isLoading = false;
-    this.$emit("loaded");
   }
 };
 </script>

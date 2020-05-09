@@ -11,7 +11,7 @@
       :class="{ round: props.round }"
       :style="{ background: props.overlay }"
     />
-    <img :class="{ round: props.round }" :src="props.src" />
+    <img :class="{ round: props.round }" :src="props.src" v-bind="data.attrs" v-on="listeners" />
   </figure>
 </template>
 
