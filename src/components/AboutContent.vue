@@ -2,9 +2,9 @@
   <div class="about-content-wrapper">
     <title-tag>About</title-tag>
     <p>
-      <span>Zliは会津大学のIT系勉強会サークルです。</span>
+      <span>Zliは会津大学公認の技術系LTサークルです。</span>
       <br />
-      <span>初めは小さなLT会から始まり50人規模の大きなサークルになりました。</span>
+      <span>LT会や勉強会、ハッカソンなどを中心に活動しています。</span>
     </p>
     <div class="content">
       <about-item
