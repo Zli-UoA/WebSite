@@ -9,7 +9,7 @@
     <div v-else class="content">
       <event-item
         class="item"
-        v-for="item in events"
+        v-for="item in displayEvents"
         :key="item.name"
         :event="item"
         :is-loading="isLoading"
@@ -41,6 +41,13 @@ export default {
     isLoading: {
       type: Boolean,
       required: true
+    }
+  },
+  computed: {
+    displayEvents: {
+      get() {
+        return this.events.slice(0, 3);
+      }
     }
   },
   methods: {
