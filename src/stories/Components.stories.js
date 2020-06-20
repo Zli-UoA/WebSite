@@ -2,6 +2,7 @@ import { withKnobs, text } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/vue";
 
 import AboutItem from "../components/AboutItem.vue";
+import AboutInfo from "../components/AboutInfo.vue";
 import EventItem from "../components/EventItem";
 import MemberItem from "../components/MemberItem";
 import SearchBox from "../components/SearchBox.vue";
@@ -24,6 +25,19 @@ storiesOf("Components", module)
                             :title="title" >
                             {{ content }}
                           </about-item>`
+  }))
+  .add("AboutInfo", () => ({
+    components: { AboutInfo },
+    data() {
+      return {
+        title: "LT会",
+        content:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        src: "https://picsum.photos/500/500",
+        side: "left"
+      };
+    },
+    template: `<about-info :title="title" :src="src" :side="side">{{ content }}</about-info>`
   }))
   .add("MemberItem", () => ({
     components: { MemberItem },
