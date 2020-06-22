@@ -9,6 +9,7 @@
     <member-container id="Member" class="part" />
     <event-container id="Events" class="part" />
     <contact-container id="Contact" class="part" />
+    <footer-container id="Footer" />
   </div>
 </template>
 
@@ -19,6 +20,7 @@ import MemberContainer from "../components/MemberContainer.vue";
 import EventContainer from "../components/EventContainer.vue";
 import ContactContainer from "../components/ContactContainer.vue";
 import HeaderContainer from "../components/HeaderContainer.vue";
+import FooterContainer from "../components/FooterContainer.vue";
 
 export default {
   components: {
@@ -27,7 +29,8 @@ export default {
     MemberContainer,
     EventContainer,
     ContactContainer,
-    HeaderContainer
+    HeaderContainer,
+    FooterContainer
   },
   data() {
     return {
